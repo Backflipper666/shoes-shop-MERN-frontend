@@ -1,14 +1,25 @@
 // counterSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
+import { Dispatch } from 'redux';
+import { apiCallBegan } from './actions';
+import RootState from './types';
 
-const counterSlice = createSlice({
-  name: 'counter',
-  initialState: 0,
+const shoesSlice = createSlice({
+  name: 'shoes',
+  initialState: {
+    list: [],
+    loading: false,
+  },
   reducers: {
-    increment: (state) => state + 1,
-    decrement: (state) => state - 1,
+    shoesRequested: (shoes, action) => {
+      shoes.loading = true;
+    },
+    shoesFetched: (shoes, action) => {
+      shoes.list = action.payload;
+      shoes.loading = false;
+    },
+    shoesRequestFailed: (shoes, action) => {
+      shoes.loading = false;
+    },
   },
 });
-
-export const { increment, decrement } = counterSlice.actions;
-export default counterSlice.reducer;

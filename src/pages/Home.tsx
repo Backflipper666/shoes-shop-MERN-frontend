@@ -11,6 +11,7 @@ const Home = () => {
       const json = await response.json();
 
       setShoes(json);
+
       console.log(json);
     };
     fetchShoes();
