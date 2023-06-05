@@ -7,7 +7,7 @@ import RootState from './types';
 const shoesSlice = createSlice({
   name: 'shoes',
   initialState: {
-    list: [],
+    list: [] as Array<any>,
     loading: false,
   },
   reducers: {
@@ -23,3 +23,6 @@ const shoesSlice = createSlice({
     },
   },
 });
+export const { shoesRequested, shoesFetched, shoesRequestFailed } =
+  shoesSlice.actions;
+export default shoesSlice.reducer;
