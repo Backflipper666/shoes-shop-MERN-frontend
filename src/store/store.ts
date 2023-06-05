@@ -8,7 +8,9 @@ export const store = configureStore({
     shoesApi: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware as Middleware),
+    getDefaultMiddleware({
+      serializableCheck: false, // Disable serializability checks
+    }).concat(api.middleware as Middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

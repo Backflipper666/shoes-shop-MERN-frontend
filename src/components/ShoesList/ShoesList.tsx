@@ -13,7 +13,10 @@ const ShoesList = () => {
   return (
     <div>
       {shoes?.map((shoe) => (
-        <div key={shoe.id}>{shoe.title}</div>
+        <div key={shoe._id}>
+          {shoe.title}
+          {shoe.description}
+        </div>
       ))}
     </div>
   );

@@ -1,9 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-interface Shoe {
-  id: number;
-  title: string;
-}
+import { Shoe } from '../interfaces/shoe';
 
 export const api = createApi({
   reducerPath: 'shoesApi',
