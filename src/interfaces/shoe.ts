@@ -9,14 +9,18 @@ export interface Shoe {
   material?: string;
   stock: number;
   image: {
-    data: Buffer;
     contentType: string;
+    data: {
+      type: string;
+      data: number[];
+    };
   };
   rating?: number;
   reviews?: Review[];
   createdAt?: Date;
   gender: 'men' | 'women' | 'kids';
 }
+
 export interface Review {
   username: string;
   comment: string;

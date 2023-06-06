@@ -13,9 +13,16 @@ const ShoesList = () => {
   }
   return (
     <div>
-      {shoes?.map((shoe) => (
-        <ShoesDetail key={shoe._id} shoe={shoe} />
-      ))}
+      <span>astalavista</span>
+      <p>
+        {' '}
+        {shoes?.map((singleData) => {
+          const base64String = btoa(
+            String.fromCharCode(...new Uint8Array(singleData.img.data.data))
+          );
+          return <img src={`data:image/png;base64,${base64String}`} />;
+        })}
+      </p>
     </div>
   );
 };
