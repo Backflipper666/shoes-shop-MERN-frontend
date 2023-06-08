@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ShoesList from '../components/ShoesList/ShoesList';
+import Header from '../components/Header/Header';
 
 const Home = () => {
   const [shoes, setShoes] = useState([]);
@@ -18,6 +19,7 @@ const Home = () => {
   }, []);
   return (
     <div>
+      <Header />
       <ShoesList />
     </div>
   );

@@ -15,6 +15,27 @@ export interface Shoe {
       data: number[];
     };
   };
+  image2?: {
+    contentType: string;
+    data: {
+      type: string;
+      data: number[];
+    };
+  };
+  image3?: {
+    contentType: string;
+    data: {
+      type: string;
+      data: number[];
+    };
+  };
+  image4?: {
+    contentType: string;
+    data: {
+      type: string;
+      data: number[];
+    };
+  };
   rating?: number;
   reviews?: Review[];
   createdAt?: Date;

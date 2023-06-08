@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect x="0" y="0" width="400" height="400">
+    <linearGradient id="rainbow-gradient" gradientTransform="rotate(45)">
+      <stop offset="0%" stop-color="red" />
+      <stop offset="14.3%" stop-color="orange" />
+      <stop offset="28.6%" stop-color="yellow" />
+      <stop offset="42.9%" stop-color="green" />
+      <stop offset="57.1%" stop-color="blue" />
+      <stop offset="71.4%" stop-color="indigo" />
+      <stop offset="85.7%" stop-color="violet" />
+    </linearGradient>
+    <rect x="0" y="0" width="400" height="400" fill="url(#rainbow-gradient)" />
+  </rect>
+</svg>
