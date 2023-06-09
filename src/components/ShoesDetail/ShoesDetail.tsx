@@ -1,4 +1,5 @@
 import { Shoe } from '../../interfaces/shoe';
+import nextId from 'react-id-generator';
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const images = [];
@@ -21,8 +22,15 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
         <h3>{shoe.title}</h3>
         <img src={`data:image/png;base64,${base64String}`} width="300px" />
         {images.map((i) => {
+          const htmlId = nextId();
           const str = btoa(String.fromCharCode(...new Uint8Array(i.data.data)));
-          return <img src={`data:image/png;base64,${str}`} width="300px" />;
+          return (
+            <img
+              src={`data:image/png;base64,${str}`}
+              width="300px"
+              key={htmlId}
+            />
+          );
         })}
       </div>
     );

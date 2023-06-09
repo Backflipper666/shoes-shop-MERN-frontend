@@ -1,27 +1,169 @@
-.dot {
-  /* dot */
+:root {
+  font-size: 16px;
+  --font-color: #fff;
+  --aux-color: #f9d303;
+}
 
-  position: absolute;
-  width: 10px;
-  height: 10px;
-
-  /* Ellipse 1 */
-
-  position: absolute;
-  width: 10px;
-  height: 10px;
-
-  background: #d9d9d9;
-
-  /* Ellipse 2 */
-
-  position: absolute;
-  width: 6px;
-  height: 6px;
-
-  background: #ffe603;
+@font-face {
+  font-family: 'Walkway black';
+  src: url('../../assets/fonts/Walkway/Walkway_Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Walkway semibold';
+  src: url('../../assets/fonts/Walkway/Walkway_SemiBold.ttf') format('truetype');
 }
 
 .header__outer-wrapper {
   background: #000000;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.header__title {
+  color: var(--font-color);
+  position: relative;
+  font-size: 40px;
+  font-family: 'Walkway black', Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+  display: inline;
+  margin-right: 50px;
+}
+
+.header__title::after {
+  content: '';
+  background-image: url('../../assets/dot.svg');
+  position: absolute;
+  top: 75%;
+  right: -110;
+  transform: translate(50%, -50%);
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.header__formen {
+  background: none;
+  border: none;
+  color: var(--font-color);
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 24px;
+  font-family: 'Walkway semibold', Arial, Helvetica, sans-serif;
+  margin-right: 40px;
+  padding: 10px;
+  position: relative; /* Add this to make the pseudo-element positioned correctly */
+}
+
+.header__formen::after,
+.header__forwomen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../assets/images/highlighter.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0; /* Start with 0 opacity */
+  transition: opacity 0.3s ease-in-out; /* Apply transition to the opacity property */
+}
+
+.header__formen:hover::after,
+.header__forwomen:hover::after {
+  opacity: 1; /* Change opacity to 1 on hover */
+}
+
+.header__forwomen {
+  background: none;
+  border: none;
+  color: var(--font-color);
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 24px;
+  font-family: 'Walkway semibold', Arial, Helvetica, sans-serif;
+  margin-right: 40px;
+  padding: 10px;
+  position: relative;
+}
+.header__right-wrapper {
+  position: relative;
+}
+
+.header__search {
+  margin-right: 20px;
+  position: absolute;
+  top: 13px;
+  left: -50px;
+}
+
+.header__auth {
+  color: var(--aux-color);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 24px;
+  font-family: 'Walkway semibold', Arial, Helvetica, sans-serif;
+  margin-right: 40px;
+  padding: 10px;
+  position: relative; /* Add this to make the pseudo-element positioned correctly */
+}
+
+.header__cart {
+  color: var(--aux-color);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 24px;
+  font-family: 'Walkway semibold', Arial, Helvetica, sans-serif;
+  margin-right: 40px;
+  padding: 10px;
+  position: relative;
+}
+
+.header__auth::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../assets/images/highlighter.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0; /* Start with 0 opacity */
+
+  transition: opacity 0.3s ease-in-out; /* Apply transition to the opacity property */
+}
+
+.header__auth:hover::after,
+.header__cart:hover::after {
+  opacity: 1; /* Change opacity to 1 on hover */
+}
+.header__cart::after {
+  content: '';
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  background-image: url('../../assets/images/cart.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  z-index: 2;
+  margin-left: 5px;
 }
