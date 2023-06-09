@@ -43,7 +43,8 @@
   border-radius: 50%;
 }
 
-.header__formen {
+
+.header__link {
   background: none;
   border: none;
   color: var(--font-color);
@@ -53,47 +54,98 @@
   text-decoration: none;
   cursor: pointer;
   font-size: 24px;
-  font-family: 'Walkway semibold', Arial, Helvetica, sans-serif;
-  margin-right: 40px;
-  padding: 10px;
-  position: relative; /* Add this to make the pseudo-element positioned correctly */
-}
-
-.header__formen::after,
-.header__forwomen::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('../../assets/images/highlighter.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0; /* Start with 0 opacity */
-  transition: opacity 0.3s ease-in-out; /* Apply transition to the opacity property */
-}
-
-.header__formen:hover::after,
-.header__forwomen:hover::after {
-  opacity: 1; /* Change opacity to 1 on hover */
-}
-
-.header__forwomen {
-  background: none;
-  border: none;
-  color: var(--font-color);
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 24px;
-  font-family: 'Walkway semibold', Arial, Helvetica, sans-serif;
+  font-family: 'Walkway black', Arial, Helvetica, sans-serif;
   margin-right: 40px;
   padding: 10px;
   position: relative;
 }
+
+
+/*left white links*/
+
+.header__link::before{
+  content:'';
+  position:absolute;
+  left:0px;
+  background-image: url('../../assets/images/highlighter.png');
+  background-repeat:no-repeat;
+  background-position:40% 10%;
+  height:100px;
+  width:160px;
+  background-size:contain;
+  z-index:2;
+  transition: opacity 0.3s ease-in-out; /* Apply transition to the opacity property */
+  opacity: 0; /* Change opacity to 1 on hover */
+
+}
+
+.header__link:hover::before{
+  opacity:1;
+}
+
+/*right yellow links*/
+
+.header__link-yellow::before{
+  content:'';
+  position:absolute;
+  left:0px;
+  background-image: url('../../assets/images/highlighter-yellow.png');
+  background-repeat:no-repeat;
+  background-position:40% 10%;
+  height:100px;
+  width:160px;
+  background-size:contain;
+  z-index:2;
+  transition: opacity 0.3s ease-in-out; /* Apply transition to the opacity property */
+  opacity: 0; /* Change opacity to 1 on hover */
+
+}
+
+.header__link-yellow:hover::before{
+  opacity:1;
+}
+
+
+
+
+.header__link-auth{
+  color:var(--aux-color)
+}
+.header__link-auth::before{
+  content:'';
+  left:-10px;
+  position:absolute;
+width:120px;
+}
+
+.header__link-cart{
+  color:var(--aux-color)
+}
+
+.header__link-cart::after{
+  content:'';
+  position:absolute;
+  top:10px;
+right:-20px;
+  background-image: url('../../assets/images/cart.svg');
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-position:50% 50%;
+  width:30px;
+  height:30px;
+  
+}
+
+.header__link-cart::before{
+  content:'';
+  position:absolute;
+  top:0px;
+  left:-4px;
+width:160px;
+}
+
+
+
 .header__right-wrapper {
   position: relative;
 }
@@ -105,65 +157,3 @@
   left: -50px;
 }
 
-.header__auth {
-  color: var(--aux-color);
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 24px;
-  font-family: 'Walkway semibold', Arial, Helvetica, sans-serif;
-  margin-right: 40px;
-  padding: 10px;
-  position: relative; /* Add this to make the pseudo-element positioned correctly */
-}
-
-.header__cart {
-  color: var(--aux-color);
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 24px;
-  font-family: 'Walkway semibold', Arial, Helvetica, sans-serif;
-  margin-right: 40px;
-  padding: 10px;
-  position: relative;
-}
-
-.header__auth::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('../../assets/images/highlighter.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0; /* Start with 0 opacity */
-
-  transition: opacity 0.3s ease-in-out; /* Apply transition to the opacity property */
-}
-
-.header__auth:hover::after,
-.header__cart:hover::after {
-  opacity: 1; /* Change opacity to 1 on hover */
-}
-.header__cart::after {
-  content: '';
-  position: absolute;
-  height: 25px;
-  width: 25px;
-  background-image: url('../../assets/images/cart.svg');
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: contain;
-  z-index: 2;
-  margin-left: 5px;
-}

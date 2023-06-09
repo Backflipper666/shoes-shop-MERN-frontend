@@ -3,6 +3,7 @@ import nextId from 'react-id-generator';
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const images = [];
+  images.push(shoe.image)
   if (shoe.image2) images.push(shoe.image2);
   if (shoe.image3) images.push(shoe.image3);
   if (shoe.image4) images.push(shoe.image4);
