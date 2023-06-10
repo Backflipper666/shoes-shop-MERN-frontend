@@ -111,3 +111,56 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+.sidebar__slider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+.sidebar__slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.sidebar__slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04aa6d; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.sidebar__slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04aa6d; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+.sidebar__price-wrapper {
+  width: 100%;
+}
+
+.sidebar__slider-wrapper {
+  width: 100%;
+}
+.sidebar__price {
+  width: 100%;
+  font-size: 24px;
+  padding: 10px;
+}
+.sidebar__price-from {
+  border: 1px solid #000;
+}
+.sidebar__price-to {
+  border: 1px solid #000;
+  border-left: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
