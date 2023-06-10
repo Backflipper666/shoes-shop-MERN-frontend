@@ -1,0 +1,113 @@
+@font-face {
+  font-family: 'Walkway semi bold';
+  src: url('../../assets/fonts/Walkway/Walkway_SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'roboto light';
+  src: url('../../assets/fonts/roboto/Roboto-Light.ttf') format('truetype');
+}
+/*PTN57F*/
+:root {
+  --pale-grey: #7b7b7b;
+}
+
+.sidebar {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+.sidebar__wrapper {
+  width: 320px;
+}
+
+.sidebar__filter-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  align-items: baseline;
+}
+
+.sidebar__header-container {
+  display: flex;
+  margin-bottom: 10px;
+  column-gap: 100px;
+}
+
+.sidebar__header {
+  margin: 0;
+  font-family: 'Walkway semi bold';
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.sidebar__button {
+  background-color: white;
+  border: none;
+  color: var(--pale-grey);
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sidebar__button-dropdown {
+  background-image: url('../../assets/images/dropdown-upside.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  margin-left: 40px;
+  height: 30px;
+  width: 30px;
+}
+
+.sidebar__form {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.sidebar__form-wrapper {
+  // border: 1px solid #000;
+  display: flex;
+  font-family: 'Walkway semi bold';
+  font-weight: 200;
+}
+.sidebar__label {
+  font-weight: 300;
+  // font-family: 'montserrat';
+  position: relative;
+  font-family: 'roboto light', Arial, Helvetica, sans-serif;
+}
+
+.sidebar__label::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: -40px;
+  display: inline-block;
+  width: 25px; /* Adjust the width as needed */
+  height: 25px; /* Adjust the height as needed */
+  border-left: 1px solid var(--pale-grey);
+  transform: rotate(30deg);
+}
+
+.sidebar__number {
+  font-family: 'roboto light', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+
+  margin-left: 40px;
+  margin-top: 4px;
+}
+
+.sidebar__checkbox {
+  transform: scale(1.5);
+  margin-right: 10px;
+}
+
+.sidebar__show-more-button {
+  background: none;
+  background-color: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}

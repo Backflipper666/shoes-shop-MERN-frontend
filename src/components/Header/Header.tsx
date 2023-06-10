@@ -1,8 +1,9 @@
 import './Header.scss';
+import Navbar from '../Navbar/Navbar'
 import searchIcon from '../../assets/images/search-icon.svg';
 const Header = () => {
   return (
-    <div className="header__outer-wrapper">
+    <nav className="header__outer-wrapper">
       <div className="header__left-wrapper">
         <h3 className="header__title">STEP STREET</h3>{' '}
         <a href="" className="header__link">
@@ -20,7 +21,7 @@ const Header = () => {
         </a>
         <button className="header__link header__link-cart header__link-yellow">КОРЗИНА</button>
       </div>
-    </div>
+    </nav>
   );
 };
 
