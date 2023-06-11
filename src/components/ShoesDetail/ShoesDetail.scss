@@ -1,0 +1,71 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+:root {
+  --background-color: #f6f6f6;
+  --button-bg: black;
+  --button-text-color: white;
+}
+.card__wrapper {
+  border: 1px solid #000;
+  width: 260px;
+  height: 350px;
+  background: var(--background-color);
+  padding: 10px;
+  position: relative;
+}
+
+.card__image-first {
+  width: 200px;
+  height: 200px;
+  margin-left: 15px;
+}
+
+.card__promotion {
+  background: var(--button-bg);
+  color: var(--aux-color); //var declared in Header.scss
+  width: 65px;
+  height: 28px;
+  padding: 2px;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 900;
+}
+
+.card__ad {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.card__discount {
+  position: absolute;
+  bottom: 40px;
+  right: 0px;
+}
+
+.card__heart {
+  background-image: url('../../assets/images/heart.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 7px;
+  right: 5px;
+}
+.card__description {
+  font-size: 12px;
+}
+
+.card__price {
+  font-family: 'roboto light';
+  font-size: 32px;
+  font-weight: 300;
+  margin-top: -5px;
+}
