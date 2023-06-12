@@ -10,6 +10,8 @@ html {
   --background-color: #f6f6f6;
   --button-bg: black;
   --button-text-color: white;
+  --dark-grey: #3f3e3e;
+  --light-grey: #908a8a;
 }
 .card__wrapper {
   border: 1px solid #000;
@@ -19,7 +21,38 @@ html {
   padding: 10px;
   position: relative;
 }
+.card__span-wrapper {
+  // border: 1px solid #000;
+  height: 9px;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  column-gap: 6px;
+}
+.card__indicator {
+  width: 60px;
+  height: 4px;
+  background-color: var(--light-grey);
 
+  .card__indicator:hover {
+    background-color: var(--dark-grey);
+  }
+
+  &::after {
+    content: '';
+    width: 60px;
+    background-color: inherit;
+    opacity: 0.3;
+    height: 350px;
+    display: inline-block;
+  }
+}
+
+.card__indicator:hover {
+  background-color: var(--dark-grey);
+}
 .card__image-first {
   width: 200px;
   height: 200px;
