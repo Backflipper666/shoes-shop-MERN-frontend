@@ -14,11 +14,11 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   if (shoe.image3) images.push(shoe.image3);
   if (shoe.image4) images.push(shoe.image4);
 
-  const handleMouseEnter2ndImage = (image: any) => {
+  const handleMouseEnter = (image: any) => {
     setCurrentImage(image);
   };
 
-  const handleMouseLeave2ndImg = (image: any) => {
+  const handleMouseLeave = (image: any) => {
     setCurrentImage(image);
   };
 
@@ -34,6 +34,12 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
       ? btoa(String.fromCharCode(...new Uint8Array(shoe.image2.data.data)))
       : '';
 
+    const base64StringImg3 = shoe.image3
+      ? btoa(String.fromCharCode(...new Uint8Array(shoe.image3.data.data)))
+      : '';
+    const base64StringImg4 = shoe.image4
+      ? btoa(String.fromCharCode(...new Uint8Array(shoe.image4.data.data)))
+      : '';
     // Convert the Uint8Array image data to a base64-encoded string
 
     return (
@@ -44,11 +50,19 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
             <span className="card__indicator card__indicator-1"></span>
             <span
               className="card__indicator card__indicator-2"
-              onMouseEnter={() => handleMouseEnter2ndImage(base64StringImg2)}
-              onMouseLeave={() => handleMouseLeave2ndImg(base64String)}
+              onMouseEnter={() => handleMouseEnter(base64StringImg2)}
+              onMouseLeave={() => handleMouseLeave(base64String)}
             ></span>
-            <span className="card__indicator card__indicator-3"></span>
-            <span className="card__indicator card__indicator-4"></span>
+            <span
+              className="card__indicator card__indicator-3"
+              onMouseEnter={() => handleMouseEnter(base64StringImg3)}
+              onMouseLeave={() => handleMouseLeave(base64String)}
+            ></span>
+            <span
+              className="card__indicator card__indicator-4"
+              onMouseEnter={() => handleMouseEnter(base64StringImg4)}
+              onMouseLeave={() => handleMouseLeave(base64String)}
+            ></span>
           </div>
           <p className="card__ad card__promotion">NEW</p>
           <p className="card__discount card__promotion">-20 %</p>
