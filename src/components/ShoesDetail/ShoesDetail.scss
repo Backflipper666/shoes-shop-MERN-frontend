@@ -29,30 +29,34 @@ html {
   top: 0px;
   right: 0px;
   display: flex;
-  column-gap: 6px;
 }
 .card__indicator {
-  width: 60px;
-  height: 4px;
-  background-color: var(--light-grey);
+  width: 65px;
+  // border: 1px solid #000;
+  height: 350px;
+  background-color: rgba(144, 138, 138, 0);
+  opacity: 0.2;
+  position: relative;
 
-  .card__indicator:hover {
+  &:hover {
+    // background-color: var(--dark-grey);
+  }
+
+  &::before {
+    height: 4px;
+    width: 60px;
+    content: '';
+    background-color: var(--light-grey);
+    position: absolute;
+    top: 0px;
+    left: 2px;
+  }
+
+  &:hover::before {
     background-color: var(--dark-grey);
   }
-
-  &::after {
-    content: '';
-    width: 60px;
-    background-color: inherit;
-    opacity: 0.3;
-    height: 350px;
-    display: inline-block;
-  }
 }
 
-.card__indicator:hover {
-  background-color: var(--dark-grey);
-}
 .card__image-first {
   width: 200px;
   height: 200px;
