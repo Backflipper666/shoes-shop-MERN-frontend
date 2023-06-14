@@ -1,14 +1,21 @@
+//FilterMain.tsx
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useState, ChangeEvent, useEffect } from 'react';
 import {
   shoesFilteredOnSale,
   shoesFilteredByNewCollection,
+  setIsOnSaleChecked,
+  setIsNewCollectionChecked,
 } from '../../store/slices';
 
 const FilterMain = () => {
-  const [isOnSaleChecked, setIsOnSaleChecked] = useState(false);
-  const [isNewCollectionChecked, setIsNewCollectionChecked] = useState(false);
+  const isOnSaleChecked = useSelector(
+    (state: RootState) => state.shoes.isOnSaleChecked
+  );
+  const isNewCollectionChecked = useSelector(
+    (state: RootState) => state.shoes.isNewCollectionChecked
+  );
 
   const allShoes = useSelector((state: RootState) => state.shoes.list);
   const dispatch = useDispatch();
@@ -31,11 +38,13 @@ const FilterMain = () => {
   }, [isOnSaleChecked, isNewCollectionChecked, allShoes, dispatch]);
 
   const handleOnSaleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setIsOnSaleChecked(event.target.checked);
+    const checked = event.target.checked;
+    dispatch(setIsOnSaleChecked(checked));
   };
 
   const handleNewCollectionChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setIsNewCollectionChecked(event.target.checked);
+    const checked = event.target.checked;
+    dispatch(setIsNewCollectionChecked(checked));
   };
 
   return (

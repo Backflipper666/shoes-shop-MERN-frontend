@@ -12,6 +12,12 @@ const shoesSlice = createSlice({
     loading: false,
     onSale: [] as Array<any>,
     shoesToBeRendered: [] as Array<any>,
+    filteredBy: {
+      onSale: false,
+      newCollection: false,
+    },
+    isOnSaleChecked: false,
+    isNewCollectionChecked: false,
   },
   reducers: {
     shoesRequested: (shoes, action) => {
@@ -32,6 +38,12 @@ const shoesSlice = createSlice({
     shoesFilteredByNewCollection: (shoes, action) => {
       shoes.shoesToBeRendered = action.payload;
     },
+    setIsOnSaleChecked: (state, action) => {
+      state.isOnSaleChecked = action.payload;
+    },
+    setIsNewCollectionChecked: (state, action) => {
+      state.isNewCollectionChecked = action.payload;
+    },
   },
 });
 export const {
@@ -40,5 +52,7 @@ export const {
   shoesRequestFailed,
   shoesFilteredOnSale,
   shoesFilteredByNewCollection,
+  setIsOnSaleChecked,
+  setIsNewCollectionChecked,
 } = shoesSlice.actions;
 export default shoesSlice.reducer;
