@@ -10,7 +10,7 @@ html {
   --background-color: #f6f6f6;
   --button-bg: black;
   --button-text-color: white;
-  --dark-grey: #3f3e3e;
+  --dark-grey: #1b1b1b;
   --light-grey: #908a8a;
 }
 .card__wrapper {
@@ -98,6 +98,8 @@ html {
 }
 .card__description {
   font-size: 12px;
+  width: 180px;
+  margin-bottom: 5px;
 }
 
 .card__price {

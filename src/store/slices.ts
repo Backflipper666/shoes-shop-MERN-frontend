@@ -15,6 +15,7 @@ const shoesSlice = createSlice({
       shoes.loading = true;
     },
     shoesFetched: (shoes, action) => {
+      console.log('shoes fetchhhed');
       shoes.list = action.payload;
       shoes.loading = false;
     },

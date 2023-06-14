@@ -40,6 +40,10 @@ export interface Shoe {
   reviews?: Review[];
   createdAt?: Date;
   gender: 'men' | 'women' | 'kids';
+  onSale?: boolean;
+  discountPercent?: number;
+  newCollection?: boolean;
+  season?: 'summer' | 'winter' | 'demi';
 }
 
 export interface Review {
