@@ -1,34 +1,41 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store'; // Import RootState and Shoe types
-import { Shoe } from '../../interfaces/shoe';
-import { useState, ChangeEvent } from 'react';
+import { RootState } from '../../store/store';
+import { useState, ChangeEvent, useEffect } from 'react';
 import {
-  shoesRequested,
-  shoesFetched,
-  shoesRequestFailed,
   shoesFilteredOnSale,
+  shoesFilteredByNewCollection,
 } from '../../store/slices';
 
 const FilterMain = () => {
   const [isOnSaleChecked, setIsOnSaleChecked] = useState(false);
+  const [isNewCollectionChecked, setIsNewCollectionChecked] = useState(false);
 
-  const globalState = useSelector((state: RootState) => state); // Provide RootState type annotation
-  console.log('global state iss: ', globalState);
-  const allShoes = globalState.shoes.list;
-  console.log('allShoes is: ', allShoes);
-
+  const allShoes = useSelector((state: RootState) => state.shoes.list);
   const dispatch = useDispatch();
 
-  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const isChecked = event.target.checked;
-    const shoesOnSale = allShoes.filter((shoe) => shoe.onSale);
-    console.log('shoes on saaaale', shoesOnSale);
-    setIsOnSaleChecked(!isOnSaleChecked);
-    if (!isOnSaleChecked) {
-      dispatch(shoesFilteredOnSale(shoesOnSale));
+  useEffect(() => {
+    if (isOnSaleChecked && isNewCollectionChecked) {
+      const filteredShoes = allShoes.filter(
+        (shoe) => shoe.onSale && shoe.newCollection
+      );
+      dispatch(shoesFilteredByNewCollection(filteredShoes));
     } else if (isOnSaleChecked) {
-      dispatch(shoesFilteredOnSale(allShoes));
+      const filteredShoes = allShoes.filter((shoe) => shoe.onSale);
+      dispatch(shoesFilteredOnSale(filteredShoes));
+    } else if (isNewCollectionChecked) {
+      const filteredShoes = allShoes.filter((shoe) => shoe.newCollection);
+      dispatch(shoesFilteredByNewCollection(filteredShoes));
+    } else {
+      dispatch(shoesFilteredByNewCollection(allShoes));
     }
+  }, [isOnSaleChecked, isNewCollectionChecked, allShoes, dispatch]);
+
+  const handleOnSaleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsOnSaleChecked(event.target.checked);
+  };
+
+  const handleNewCollectionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsNewCollectionChecked(event.target.checked);
   };
 
   return (
@@ -44,11 +51,11 @@ const FilterMain = () => {
           id="discountId"
           className="sidebar__form sidebar__checkbox"
           checked={isOnSaleChecked}
-          onChange={handleCheckboxChange}
+          onChange={handleOnSaleChange}
         />
         <label htmlFor="discountId" className="sidebar__form sidebar__label">
           Скидки
-        </label>{' '}
+        </label>
         <span className="sidebar__number">22</span>
       </div>
       <div className="sidebar__form-wrapper">
@@ -57,6 +64,8 @@ const FilterMain = () => {
           name="newCollection"
           id="newCollectionId"
           className="sidebar__form sidebar__checkbox"
+          checked={isNewCollectionChecked}
+          onChange={handleNewCollectionChange}
         />
         <label
           htmlFor="newCollectionId"

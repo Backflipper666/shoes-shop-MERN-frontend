@@ -21,13 +21,15 @@ const shoesSlice = createSlice({
       console.log('shoes fetchhhed');
       shoes.list = action.payload;
       shoes.loading = false;
-      shoes.onSale = action.payload.filter((shoe: Shoe) => shoe.onSale);
       shoes.shoesToBeRendered = action.payload;
     },
     shoesRequestFailed: (shoes, action) => {
       shoes.loading = false;
     },
     shoesFilteredOnSale: (shoes, action) => {
+      shoes.shoesToBeRendered = action.payload;
+    },
+    shoesFilteredByNewCollection: (shoes, action) => {
       shoes.shoesToBeRendered = action.payload;
     },
   },
@@ -37,5 +39,6 @@ export const {
   shoesFetched,
   shoesRequestFailed,
   shoesFilteredOnSale,
+  shoesFilteredByNewCollection,
 } = shoesSlice.actions;
 export default shoesSlice.reducer;
