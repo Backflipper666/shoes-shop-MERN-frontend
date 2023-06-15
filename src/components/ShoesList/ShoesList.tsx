@@ -25,7 +25,7 @@ const ShoesList = () => {
 
   useEffect(() => {
     if (isError) {
-      dispatch(shoesRequestFailed(shoes)); // Dispatch failure action
+      dispatch(shoesRequestFailed()); // Dispatch failure action without any parameters
     } else if (shoes) {
       dispatch(shoesFetched(shoes)); // Dispatch success action with fetched data
     }

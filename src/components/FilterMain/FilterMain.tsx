@@ -11,10 +11,10 @@ import {
 
 const FilterMain = () => {
   const isOnSaleChecked = useSelector(
-    (state: RootState) => state.shoes.isOnSaleChecked
+    (state: RootState) => state.shoes.checkedFields.isOnSaleChecked
   );
   const isNewCollectionChecked = useSelector(
-    (state: RootState) => state.shoes.isNewCollectionChecked
+    (state: RootState) => state.shoes.checkedFields.isNewCollectionChecked
   );
 
   const allShoes = useSelector((state: RootState) => state.shoes.list);

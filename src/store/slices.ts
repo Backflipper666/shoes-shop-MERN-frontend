@@ -1,4 +1,4 @@
-// counterSlice.ts
+//slices.ts
 import { createSlice } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 import { apiCallBegan } from './actions';
@@ -8,28 +8,26 @@ import { Shoe } from '../interfaces/shoe';
 const shoesSlice = createSlice({
   name: 'shoes',
   initialState: {
-    list: [] as Array<any>,
+    list: [] as Shoe[],
     loading: false,
-    onSale: [] as Array<any>,
-    shoesToBeRendered: [] as Array<any>,
-    filteredBy: {
-      onSale: false,
-      newCollection: false,
+    onSale: [] as Shoe[],
+    shoesToBeRendered: [] as Shoe[],
+    checkedFields: {
+      isOnSaleChecked: false,
+      isNewCollectionChecked: false,
     },
-    isOnSaleChecked: false,
-    isNewCollectionChecked: false,
   },
   reducers: {
-    shoesRequested: (shoes, action) => {
+    shoesRequested: (shoes) => {
       shoes.loading = true;
     },
     shoesFetched: (shoes, action) => {
-      console.log('shoes fetchhhed');
+      console.log('shoes fetched');
       shoes.list = action.payload;
       shoes.loading = false;
       shoes.shoesToBeRendered = action.payload;
     },
-    shoesRequestFailed: (shoes, action) => {
+    shoesRequestFailed: (shoes) => {
       shoes.loading = false;
     },
     shoesFilteredOnSale: (shoes, action) => {
@@ -39,13 +37,14 @@ const shoesSlice = createSlice({
       shoes.shoesToBeRendered = action.payload;
     },
     setIsOnSaleChecked: (state, action) => {
-      state.isOnSaleChecked = action.payload;
+      state.checkedFields.isOnSaleChecked = action.payload;
     },
     setIsNewCollectionChecked: (state, action) => {
-      state.isNewCollectionChecked = action.payload;
+      state.checkedFields.isNewCollectionChecked = action.payload;
     },
   },
 });
+
 export const {
   shoesRequested,
   shoesFetched,
