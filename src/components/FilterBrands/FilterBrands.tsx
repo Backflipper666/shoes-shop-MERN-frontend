@@ -10,6 +10,9 @@ import {
   setShoesToBeRendered,
   setIsNikeChecked,
   setIsPumaChecked,
+  setIsAdidasChecked,
+  setIsFilaChecked,
+  setIsNewBalanceChecked,
 } from '../../store/slices';
 
 const FilterBrands = () => {
@@ -24,6 +27,15 @@ const FilterBrands = () => {
   );
   const isPumaChecked = useSelector(
     (state: RootState) => state.shoes.checkedFields.isPumaChecked
+  );
+  const isAdidasChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isAdidasChecked
+  );
+  const isFilaChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isFilaChecked
+  );
+  const isNewBalanceChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isNewBalanceChecked
   );
 
   const allShoes = useSelector((state: RootState) => state.shoes.list);
@@ -41,16 +53,184 @@ const FilterBrands = () => {
         filteredShoes = filteredShoes.filter((shoe) => shoe.newCollection);
       }
 
-      if (isNikeChecked && !isPumaChecked) {
+      if (
+        isNikeChecked &&
+        !isPumaChecked &&
+        !isAdidasChecked &&
+        !isFilaChecked
+      ) {
         filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Nike');
       }
 
-      if (!isNikeChecked && isPumaChecked) {
+      if (
+        !isNikeChecked &&
+        isPumaChecked &&
+        !isAdidasChecked &&
+        !isFilaChecked
+      ) {
         filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Puma');
       }
-      if (isNikeChecked && isPumaChecked) {
+
+      if (
+        !isNikeChecked &&
+        !isPumaChecked &&
+        isAdidasChecked &&
+        !isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Adidas');
+      }
+
+      if (
+        !isNikeChecked &&
+        !isPumaChecked &&
+        !isAdidasChecked &&
+        isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'FILA');
+      }
+
+      if (
+        isNikeChecked &&
+        isPumaChecked &&
+        !isAdidasChecked &&
+        !isFilaChecked
+      ) {
         filteredShoes = filteredShoes.filter(
           (shoe) => shoe.brand === 'Nike' || shoe.brand === 'Puma'
+        );
+      }
+
+      if (
+        isNikeChecked &&
+        !isPumaChecked &&
+        isAdidasChecked &&
+        !isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) => shoe.brand === 'Nike' || shoe.brand === 'Adidas'
+        );
+      }
+
+      if (
+        isNikeChecked &&
+        !isPumaChecked &&
+        !isAdidasChecked &&
+        isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) => shoe.brand === 'Nike' || shoe.brand === 'FILA'
+        );
+      }
+
+      if (
+        !isNikeChecked &&
+        isPumaChecked &&
+        isAdidasChecked &&
+        !isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) => shoe.brand === 'Puma' || shoe.brand === 'Adidas'
+        );
+      }
+
+      if (
+        !isNikeChecked &&
+        isPumaChecked &&
+        !isAdidasChecked &&
+        isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) => shoe.brand === 'Puma' || shoe.brand === 'FILA'
+        );
+      }
+
+      if (
+        !isNikeChecked &&
+        !isPumaChecked &&
+        isAdidasChecked &&
+        isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) => shoe.brand === 'Adidas' || shoe.brand === 'FILA'
+        );
+      }
+
+      if (isNikeChecked && isPumaChecked && isAdidasChecked && !isFilaChecked) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) =>
+            shoe.brand === 'Nike' ||
+            shoe.brand === 'Puma' ||
+            shoe.brand === 'Adidas'
+        );
+      }
+
+      if (isNikeChecked && isPumaChecked && !isAdidasChecked && isFilaChecked) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) =>
+            shoe.brand === 'Nike' ||
+            shoe.brand === 'Puma' ||
+            shoe.brand === 'FILA'
+        );
+      }
+
+      if (isNikeChecked && !isPumaChecked && isAdidasChecked && isFilaChecked) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) =>
+            shoe.brand === 'Nike' ||
+            shoe.brand === 'Adidas' ||
+            shoe.brand === 'FILA'
+        );
+      }
+
+      if (!isNikeChecked && isPumaChecked && isAdidasChecked && isFilaChecked) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) =>
+            shoe.brand === 'Puma' ||
+            shoe.brand === 'Adidas' ||
+            shoe.brand === 'FILA'
+        );
+      }
+
+      if (
+        isNikeChecked &&
+        !isPumaChecked &&
+        !isAdidasChecked &&
+        isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) => shoe.brand === 'Nike' || shoe.brand === 'FILA'
+        );
+      }
+
+      if (
+        !isNikeChecked &&
+        isPumaChecked &&
+        !isAdidasChecked &&
+        isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) => shoe.brand === 'Puma' || shoe.brand === 'FILA'
+        );
+      }
+
+      if (
+        !isNikeChecked &&
+        !isPumaChecked &&
+        isAdidasChecked &&
+        isFilaChecked
+      ) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) => shoe.brand === 'Adidas' || shoe.brand === 'FILA'
+        );
+      }
+
+      if (isNikeChecked && isPumaChecked && isAdidasChecked && isFilaChecked) {
+        filteredShoes = filteredShoes.filter(
+          (shoe) =>
+            shoe.brand === 'Nike' ||
+            shoe.brand === 'Puma' ||
+            shoe.brand === 'Adidas' ||
+            shoe.brand === 'FILA'
         );
       }
 
@@ -63,6 +243,8 @@ const FilterBrands = () => {
     isNewCollectionChecked,
     isNikeChecked,
     isPumaChecked,
+    isAdidasChecked,
+    isFilaChecked,
     allShoes,
     dispatch,
   ]);
@@ -77,6 +259,21 @@ const FilterBrands = () => {
     dispatch(setIsNikeChecked(checked));
   };
 
+  const handleAdidasChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked;
+    dispatch(setIsAdidasChecked(checked));
+  };
+
+  const handleFilaChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked;
+    dispatch(setIsFilaChecked(checked));
+  };
+
+  const handleNewBalanceChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked;
+    dispatch(setIsNewBalanceChecked(checked));
+  };
+
   return (
     <div className="sidebar__brand sidebar__filter-container">
       <div className="sidebar__header-container">
@@ -89,6 +286,8 @@ const FilterBrands = () => {
           name="adidas"
           id="adidasId"
           className="sidebar__form sidebar__checkbox"
+          checked={isAdidasChecked}
+          onChange={handleAdidasChange}
         />
         <label htmlFor="adidasId" className="sidebar__form sidebar__label">
           Adidas
@@ -130,6 +329,8 @@ const FilterBrands = () => {
           name="newBalance"
           id="newBalanceId"
           className="sidebar__form sidebar__checkbox"
+          checked={isNewBalanceChecked}
+          onChange={handleNewBalanceChange}
         />
         <label htmlFor="newBalanceId" className="sidebar__form sidebar__label">
           New Balance
@@ -142,6 +343,8 @@ const FilterBrands = () => {
           name="fila"
           id="filaId"
           className="sidebar__form sidebar__checkbox"
+          checked={isFilaChecked}
+          onChange={handleFilaChange}
         />
         <label htmlFor="filaId" className="sidebar__form sidebar__label">
           FILA

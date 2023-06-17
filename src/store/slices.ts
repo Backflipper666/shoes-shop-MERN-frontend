@@ -10,6 +10,9 @@ interface CheckedFields {
   isNewCollectionChecked: boolean;
   isNikeChecked: boolean;
   isPumaChecked: boolean;
+  isAdidasChecked: boolean;
+  isFilaChecked: boolean;
+  isNewBalanceChecked: boolean;
 }
 
 interface ShoesState {
@@ -30,6 +33,9 @@ const initialState: ShoesState = {
     isNewCollectionChecked: false,
     isNikeChecked: false,
     isPumaChecked: false,
+    isAdidasChecked: false,
+    isFilaChecked: false,
+    isNewBalanceChecked: false,
   },
 };
 
@@ -70,6 +76,15 @@ const shoesSlice = createSlice({
     setIsPumaChecked: (state, action) => {
       state.checkedFields.isPumaChecked = action.payload;
     },
+    setIsAdidasChecked: (state, action) => {
+      state.checkedFields.isAdidasChecked = action.payload;
+    },
+    setIsFilaChecked: (state, action) => {
+      state.checkedFields.isFilaChecked = action.payload;
+    },
+    setIsNewBalanceChecked: (state, action) => {
+      state.checkedFields.isNewBalanceChecked = action.payload;
+    },
   },
 });
 
@@ -84,5 +99,8 @@ export const {
   setIsNewCollectionChecked,
   setIsNikeChecked,
   setIsPumaChecked,
+  setIsAdidasChecked,
+  setIsFilaChecked,
+  setIsNewBalanceChecked,
 } = shoesSlice.actions;
 export default shoesSlice.reducer;
