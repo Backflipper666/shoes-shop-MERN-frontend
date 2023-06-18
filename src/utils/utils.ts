@@ -19,7 +19,8 @@ export const filterShoes = (
   isNikeChecked: boolean,
   isPumaChecked: boolean,
   isAdidasChecked: boolean,
-  isFilaChecked: boolean
+  isFilaChecked: boolean,
+  priceRange?: { min: number; max: number }
 ): Shoe[] => {
   let filteredShoes = shoes;
 
@@ -29,6 +30,11 @@ export const filterShoes = (
 
   if (isNewCollectionChecked) {
     filteredShoes = filteredShoes.filter((shoe) => shoe.newCollection);
+  }
+  if (priceRange) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.price >= priceRange.min && shoe.price <= priceRange.max
+    );
   }
 
   if (isNikeChecked && !isPumaChecked && !isAdidasChecked && !isFilaChecked) {

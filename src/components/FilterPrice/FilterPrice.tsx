@@ -1,11 +1,65 @@
+//FilterPrice.tsx
 import MultiRangeSlider, { ChangeResult } from 'multi-range-slider-react';
 import { useState } from 'react';
 import './MultiRangeSlider.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPriceRange, setShoesToBeRendered } from '../../store/slices';
+import { RootState } from '../../store/store';
+import { ChangeEvent, useEffect } from 'react';
+import { filterShoes } from '../../utils/utils';
 
 const FilterPrice = () => {
-  const [rangeValue, setRangeValue] = useState(10000);
-  const [minValue, setMinValue] = useState(25);
-  const [maxValue, setMaxValue] = useState(75);
+  const allShoes = useSelector((state: RootState) => state.shoes.list);
+  const priceRange = useSelector((state: RootState) => state.shoes.priceRange);
+  const isOnSaleChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isOnSaleChecked
+  );
+  const isNewCollectionChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isNewCollectionChecked
+  );
+  const isNikeChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isNikeChecked
+  );
+  const isPumaChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isPumaChecked
+  );
+  const isAdidasChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isAdidasChecked
+  );
+  const isFilaChecked = useSelector(
+    (state: RootState) => state.shoes.checkedFields.isFilaChecked
+  );
+
+  const [minValue, setMinValue] = useState(10000);
+  const [maxValue, setMaxValue] = useState(100000);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const filteredShoes = filterShoes(
+      allShoes,
+      isOnSaleChecked,
+      isNewCollectionChecked,
+      isNikeChecked,
+      isPumaChecked,
+      isAdidasChecked,
+      isFilaChecked,
+      priceRange
+    );
+
+    dispatch(setShoesToBeRendered(filteredShoes));
+  }, [
+    priceRange,
+    allShoes,
+    dispatch,
+    isOnSaleChecked,
+    isNewCollectionChecked,
+    isNikeChecked,
+    isPumaChecked,
+    isAdidasChecked,
+    isFilaChecked,
+  ]);
+
   return (
     <div className="sidebar__brand sidebar__filter-container">
       <div className="sidebar__header-container">
@@ -31,6 +85,10 @@ const FilterPrice = () => {
           onInput={(e: ChangeResult) => {
             setMinValue(e.minValue);
             setMaxValue(e.maxValue);
+
+            dispatch(setPriceRange({ min: e.minValue, max: e.maxValue }));
+
+            // Call the filterShoes function or dispatch an action to filter shoes based on price range
           }}
         ></MultiRangeSlider>
       </div>

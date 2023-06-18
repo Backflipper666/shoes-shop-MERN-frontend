@@ -1,5 +1,5 @@
 //slices.ts
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 import { apiCallBegan } from './actions';
 import RootState from './types';
@@ -20,6 +20,7 @@ interface ShoesState {
   onSale: Shoe[];
   shoesToBeRendered: Shoe[];
   checkedFields: CheckedFields;
+  priceRange: { min: number; max: number };
 }
 
 const initialState: ShoesState = {
@@ -35,6 +36,7 @@ const initialState: ShoesState = {
     isAdidasChecked: false,
     isFilaChecked: false,
   },
+  priceRange: { min: 10000, max: 100000 },
 };
 
 const shoesSlice = createSlice({
@@ -80,6 +82,12 @@ const shoesSlice = createSlice({
     setIsFilaChecked: (state, action) => {
       state.checkedFields.isFilaChecked = action.payload;
     },
+    setPriceRange: (
+      state,
+      action: PayloadAction<{ min: number; max: number }>
+    ) => {
+      state.priceRange = action.payload;
+    },
   },
 });
 
@@ -96,5 +104,6 @@ export const {
   setIsPumaChecked,
   setIsAdidasChecked,
   setIsFilaChecked,
+  setPriceRange,
 } = shoesSlice.actions;
 export default shoesSlice.reducer;
