@@ -1,18 +1,15 @@
 //FilterBrands.tsx
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { useState, ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import {
-  shoesFilteredOnSale,
-  shoesFilteredByNewCollection,
-  setIsOnSaleChecked,
-  setIsNewCollectionChecked,
   setShoesToBeRendered,
   setIsNikeChecked,
   setIsPumaChecked,
   setIsAdidasChecked,
   setIsFilaChecked,
 } from '../../store/slices';
+import { filterShoes } from '../../utils/utils';
 
 const FilterBrands = () => {
   const isOnSaleChecked = useSelector(
@@ -38,202 +35,17 @@ const FilterBrands = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const filterShoes = () => {
-      let filteredShoes = allShoes;
+    const filteredShoes = filterShoes(
+      allShoes,
+      isOnSaleChecked,
+      isNewCollectionChecked,
+      isNikeChecked,
+      isPumaChecked,
+      isAdidasChecked,
+      isFilaChecked
+    );
 
-      if (isOnSaleChecked) {
-        filteredShoes = filteredShoes.filter((shoe) => shoe.onSale);
-      }
-
-      if (isNewCollectionChecked) {
-        filteredShoes = filteredShoes.filter((shoe) => shoe.newCollection);
-      }
-
-      if (
-        isNikeChecked &&
-        !isPumaChecked &&
-        !isAdidasChecked &&
-        !isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Nike');
-      }
-
-      if (
-        !isNikeChecked &&
-        isPumaChecked &&
-        !isAdidasChecked &&
-        !isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Puma');
-      }
-
-      if (
-        !isNikeChecked &&
-        !isPumaChecked &&
-        isAdidasChecked &&
-        !isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Adidas');
-      }
-
-      if (
-        !isNikeChecked &&
-        !isPumaChecked &&
-        !isAdidasChecked &&
-        isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'FILA');
-      }
-
-      if (
-        isNikeChecked &&
-        isPumaChecked &&
-        !isAdidasChecked &&
-        !isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Nike' || shoe.brand === 'Puma'
-        );
-      }
-
-      if (
-        isNikeChecked &&
-        !isPumaChecked &&
-        isAdidasChecked &&
-        !isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Nike' || shoe.brand === 'Adidas'
-        );
-      }
-
-      if (
-        isNikeChecked &&
-        !isPumaChecked &&
-        !isAdidasChecked &&
-        isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Nike' || shoe.brand === 'FILA'
-        );
-      }
-
-      if (
-        !isNikeChecked &&
-        isPumaChecked &&
-        isAdidasChecked &&
-        !isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Puma' || shoe.brand === 'Adidas'
-        );
-      }
-
-      if (
-        !isNikeChecked &&
-        isPumaChecked &&
-        !isAdidasChecked &&
-        isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Puma' || shoe.brand === 'FILA'
-        );
-      }
-
-      if (
-        !isNikeChecked &&
-        !isPumaChecked &&
-        isAdidasChecked &&
-        isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Adidas' || shoe.brand === 'FILA'
-        );
-      }
-
-      if (isNikeChecked && isPumaChecked && isAdidasChecked && !isFilaChecked) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) =>
-            shoe.brand === 'Nike' ||
-            shoe.brand === 'Puma' ||
-            shoe.brand === 'Adidas'
-        );
-      }
-
-      if (isNikeChecked && isPumaChecked && !isAdidasChecked && isFilaChecked) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) =>
-            shoe.brand === 'Nike' ||
-            shoe.brand === 'Puma' ||
-            shoe.brand === 'FILA'
-        );
-      }
-
-      if (isNikeChecked && !isPumaChecked && isAdidasChecked && isFilaChecked) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) =>
-            shoe.brand === 'Nike' ||
-            shoe.brand === 'Adidas' ||
-            shoe.brand === 'FILA'
-        );
-      }
-
-      if (!isNikeChecked && isPumaChecked && isAdidasChecked && isFilaChecked) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) =>
-            shoe.brand === 'Puma' ||
-            shoe.brand === 'Adidas' ||
-            shoe.brand === 'FILA'
-        );
-      }
-
-      if (
-        isNikeChecked &&
-        !isPumaChecked &&
-        !isAdidasChecked &&
-        isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Nike' || shoe.brand === 'FILA'
-        );
-      }
-
-      if (
-        !isNikeChecked &&
-        isPumaChecked &&
-        !isAdidasChecked &&
-        isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Puma' || shoe.brand === 'FILA'
-        );
-      }
-
-      if (
-        !isNikeChecked &&
-        !isPumaChecked &&
-        isAdidasChecked &&
-        isFilaChecked
-      ) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) => shoe.brand === 'Adidas' || shoe.brand === 'FILA'
-        );
-      }
-
-      if (isNikeChecked && isPumaChecked && isAdidasChecked && isFilaChecked) {
-        filteredShoes = filteredShoes.filter(
-          (shoe) =>
-            shoe.brand === 'Nike' ||
-            shoe.brand === 'Puma' ||
-            shoe.brand === 'Adidas' ||
-            shoe.brand === 'FILA'
-        );
-      }
-
-      dispatch(setShoesToBeRendered(filteredShoes));
-    };
-
-    filterShoes();
+    dispatch(setShoesToBeRendered(filteredShoes));
   }, [
     isOnSaleChecked,
     isNewCollectionChecked,

@@ -1,3 +1,5 @@
+import { Shoe } from '../interfaces/shoe';
+
 export function truncateString(
   str: string,
   maxCharacters: number = 60
@@ -8,3 +10,142 @@ export function truncateString(
 
   return str.slice(0, maxCharacters) + '...';
 }
+
+// utils.ts
+export const filterShoes = (
+  shoes: Shoe[],
+  isOnSaleChecked: boolean,
+  isNewCollectionChecked: boolean,
+  isNikeChecked: boolean,
+  isPumaChecked: boolean,
+  isAdidasChecked: boolean,
+  isFilaChecked: boolean
+): Shoe[] => {
+  let filteredShoes = shoes;
+
+  if (isOnSaleChecked) {
+    filteredShoes = filteredShoes.filter((shoe) => shoe.onSale);
+  }
+
+  if (isNewCollectionChecked) {
+    filteredShoes = filteredShoes.filter((shoe) => shoe.newCollection);
+  }
+
+  if (isNikeChecked && !isPumaChecked && !isAdidasChecked && !isFilaChecked) {
+    filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Nike');
+  }
+
+  if (!isNikeChecked && isPumaChecked && !isAdidasChecked && !isFilaChecked) {
+    filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Puma');
+  }
+
+  if (!isNikeChecked && !isPumaChecked && isAdidasChecked && !isFilaChecked) {
+    filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'Adidas');
+  }
+
+  if (!isNikeChecked && !isPumaChecked && !isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter((shoe) => shoe.brand === 'FILA');
+  }
+
+  if (isNikeChecked && isPumaChecked && !isAdidasChecked && !isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Nike' || shoe.brand === 'Puma'
+    );
+  }
+
+  if (isNikeChecked && !isPumaChecked && isAdidasChecked && !isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Nike' || shoe.brand === 'Adidas'
+    );
+  }
+
+  if (isNikeChecked && !isPumaChecked && !isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Nike' || shoe.brand === 'FILA'
+    );
+  }
+
+  if (!isNikeChecked && isPumaChecked && isAdidasChecked && !isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Puma' || shoe.brand === 'Adidas'
+    );
+  }
+
+  if (!isNikeChecked && isPumaChecked && !isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Puma' || shoe.brand === 'FILA'
+    );
+  }
+
+  if (!isNikeChecked && !isPumaChecked && isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Adidas' || shoe.brand === 'FILA'
+    );
+  }
+
+  if (isNikeChecked && isPumaChecked && isAdidasChecked && !isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) =>
+        shoe.brand === 'Nike' ||
+        shoe.brand === 'Puma' ||
+        shoe.brand === 'Adidas'
+    );
+  }
+
+  if (isNikeChecked && isPumaChecked && !isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) =>
+        shoe.brand === 'Nike' || shoe.brand === 'Puma' || shoe.brand === 'FILA'
+    );
+  }
+
+  if (isNikeChecked && !isPumaChecked && isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) =>
+        shoe.brand === 'Nike' ||
+        shoe.brand === 'Adidas' ||
+        shoe.brand === 'FILA'
+    );
+  }
+
+  if (!isNikeChecked && isPumaChecked && isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) =>
+        shoe.brand === 'Puma' ||
+        shoe.brand === 'Adidas' ||
+        shoe.brand === 'FILA'
+    );
+  }
+
+  if (isNikeChecked && !isPumaChecked && !isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Nike' || shoe.brand === 'FILA'
+    );
+  }
+
+  if (!isNikeChecked && isPumaChecked && !isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Puma' || shoe.brand === 'FILA'
+    );
+  }
+
+  if (!isNikeChecked && !isPumaChecked && isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) => shoe.brand === 'Adidas' || shoe.brand === 'FILA'
+    );
+  }
+
+  if (isNikeChecked && isPumaChecked && isAdidasChecked && isFilaChecked) {
+    filteredShoes = filteredShoes.filter(
+      (shoe) =>
+        shoe.brand === 'Nike' ||
+        shoe.brand === 'Puma' ||
+        shoe.brand === 'Adidas' ||
+        shoe.brand === 'FILA'
+    );
+  }
+
+  // Continue adding combinations of brand filters...
+
+  return filteredShoes;
+};
