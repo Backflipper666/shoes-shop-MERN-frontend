@@ -1,8 +1,5 @@
 //slices.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Dispatch } from 'redux';
-import { apiCallBegan } from './actions';
-import RootState from './types';
 import { Shoe } from '../interfaces/shoe';
 
 interface CheckedFields {
@@ -12,6 +9,8 @@ interface CheckedFields {
   isPumaChecked: boolean;
   isAdidasChecked: boolean;
   isFilaChecked: boolean;
+  isForMenChecked: boolean;
+  isForWomenChecked: boolean;
 }
 
 interface ShoesState {
@@ -35,6 +34,8 @@ const initialState: ShoesState = {
     isPumaChecked: false,
     isAdidasChecked: false,
     isFilaChecked: false,
+    isForMenChecked: false,
+    isForWomenChecked: false,
   },
   priceRange: { min: 10000, max: 100000 },
 };
@@ -82,6 +83,20 @@ const shoesSlice = createSlice({
     setIsFilaChecked: (state, action) => {
       state.checkedFields.isFilaChecked = action.payload;
     },
+    setIsForMenChecked: (state, action) => {
+      console.log(
+        'state.checkedFields.isForMenChecked: ',
+        state.checkedFields.isForMenChecked
+      );
+      state.checkedFields.isForMenChecked = action.payload;
+    },
+    setIsForWomenChecked: (state, action) => {
+      console.log(
+        'state.checkedFields.isForWomenChecked: ',
+        state.checkedFields.isForMenChecked
+      );
+      state.checkedFields.isForWomenChecked = action.payload;
+    },
     setPriceRange: (
       state,
       action: PayloadAction<{ min: number; max: number }>
@@ -105,5 +120,7 @@ export const {
   setIsAdidasChecked,
   setIsFilaChecked,
   setPriceRange,
+  setIsForMenChecked,
+  setIsForWomenChecked,
 } = shoesSlice.actions;
 export default shoesSlice.reducer;

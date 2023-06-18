@@ -29,7 +29,9 @@ const FilterPrice = () => {
       checkedFields.isPumaChecked,
       checkedFields.isAdidasChecked,
       checkedFields.isFilaChecked,
-      priceRange
+      priceRange,
+      checkedFields.isForMenChecked,
+      checkedFields.isForWomenChecked
     );
 
     dispatch(setShoesToBeRendered(filteredShoes));

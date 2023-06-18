@@ -1,3 +1,4 @@
+// utils.ts
 import { Shoe } from '../interfaces/shoe';
 
 export function truncateString(
@@ -11,7 +12,6 @@ export function truncateString(
   return str.slice(0, maxCharacters) + '...';
 }
 
-// utils.ts
 export const filterShoes = (
   shoes: Shoe[],
   isOnSaleChecked: boolean,
@@ -20,7 +20,9 @@ export const filterShoes = (
   isPumaChecked: boolean,
   isAdidasChecked: boolean,
   isFilaChecked: boolean,
-  priceRange?: { min: number; max: number }
+  priceRange?: { min: number; max: number },
+  isForMenChecked?: boolean,
+  isForWomenChecked?: boolean
 ): Shoe[] => {
   let filteredShoes = shoes;
 
@@ -35,6 +37,13 @@ export const filterShoes = (
     filteredShoes = filteredShoes.filter(
       (shoe) => shoe.price >= priceRange.min && shoe.price <= priceRange.max
     );
+  }
+
+  if (isForMenChecked && !isForWomenChecked) {
+    filteredShoes = filteredShoes.filter((shoe) => shoe.gender === 'men');
+  }
+  if (!isForMenChecked && isForWomenChecked) {
+    filteredShoes = shoes.filter((shoe) => shoe.gender === 'women');
   }
 
   if (isNikeChecked && !isPumaChecked && !isAdidasChecked && !isFilaChecked) {

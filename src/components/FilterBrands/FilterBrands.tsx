@@ -1,23 +1,15 @@
 //FilterBrands.tsx
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent } from 'react';
 import {
-  setShoesToBeRendered,
   setIsNikeChecked,
   setIsPumaChecked,
   setIsAdidasChecked,
   setIsFilaChecked,
 } from '../../store/slices';
-import { filterShoes } from '../../utils/utils';
 
 const FilterBrands = () => {
-  const isOnSaleChecked = useSelector(
-    (state: RootState) => state.shoes.checkedFields.isOnSaleChecked
-  );
-  const isNewCollectionChecked = useSelector(
-    (state: RootState) => state.shoes.checkedFields.isNewCollectionChecked
-  );
   const isNikeChecked = useSelector(
     (state: RootState) => state.shoes.checkedFields.isNikeChecked
   );
@@ -31,31 +23,7 @@ const FilterBrands = () => {
     (state: RootState) => state.shoes.checkedFields.isFilaChecked
   );
 
-  const allShoes = useSelector((state: RootState) => state.shoes.list);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const filteredShoes = filterShoes(
-      allShoes,
-      isOnSaleChecked,
-      isNewCollectionChecked,
-      isNikeChecked,
-      isPumaChecked,
-      isAdidasChecked,
-      isFilaChecked
-    );
-
-    dispatch(setShoesToBeRendered(filteredShoes));
-  }, [
-    isOnSaleChecked,
-    isNewCollectionChecked,
-    isNikeChecked,
-    isPumaChecked,
-    isAdidasChecked,
-    isFilaChecked,
-    allShoes,
-    dispatch,
-  ]);
 
   const handlePumaChange = (event: ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
