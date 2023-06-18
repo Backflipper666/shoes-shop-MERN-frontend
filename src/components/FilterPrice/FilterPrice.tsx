@@ -39,7 +39,7 @@ const FilterPrice = () => {
   const debouncedOnInput = useCallback(
     debounce((minValue: number, maxValue: number) => {
       dispatch(setPriceRange({ min: minValue, max: maxValue }));
-    }, 2000),
+    }, 500),
     [dispatch]
   );
 

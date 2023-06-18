@@ -12,7 +12,6 @@ const Sidebar = () => {
         <FilterMain />
         <FilterBrands />
         <FilterPrice />
-        <FilterSize />
       </div>
     </div>
   );
