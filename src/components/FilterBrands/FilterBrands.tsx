@@ -12,7 +12,6 @@ import {
   setIsPumaChecked,
   setIsAdidasChecked,
   setIsFilaChecked,
-  setIsNewBalanceChecked,
 } from '../../store/slices';
 
 const FilterBrands = () => {
@@ -33,9 +32,6 @@ const FilterBrands = () => {
   );
   const isFilaChecked = useSelector(
     (state: RootState) => state.shoes.checkedFields.isFilaChecked
-  );
-  const isNewBalanceChecked = useSelector(
-    (state: RootState) => state.shoes.checkedFields.isNewBalanceChecked
   );
 
   const allShoes = useSelector((state: RootState) => state.shoes.list);
@@ -269,11 +265,6 @@ const FilterBrands = () => {
     dispatch(setIsFilaChecked(checked));
   };
 
-  const handleNewBalanceChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const checked = event.target.checked;
-    dispatch(setIsNewBalanceChecked(checked));
-  };
-
   return (
     <div className="sidebar__brand sidebar__filter-container">
       <div className="sidebar__header-container">
@@ -323,20 +314,7 @@ const FilterBrands = () => {
         </label>
         <span className="sidebar__number">22</span>
       </div>
-      <div className="sidebar__form-wrapper">
-        <input
-          type="checkbox"
-          name="newBalance"
-          id="newBalanceId"
-          className="sidebar__form sidebar__checkbox"
-          checked={isNewBalanceChecked}
-          onChange={handleNewBalanceChange}
-        />
-        <label htmlFor="newBalanceId" className="sidebar__form sidebar__label">
-          New Balance
-        </label>
-        <span className="sidebar__number">12</span>
-      </div>
+
       <div className="sidebar__form-wrapper">
         <input
           type="checkbox"
