@@ -8,8 +8,11 @@ import {
   setIsAdidasChecked,
   setIsFilaChecked,
 } from '../../store/slices';
+import { countBrands } from '../../utils/utils';
 
 const FilterBrands = () => {
+  const allShoes = useSelector((state: RootState) => state.shoes.list);
+
   const isNikeChecked = useSelector(
     (state: RootState) => state.shoes.checkedFields.isNikeChecked
   );
@@ -63,7 +66,9 @@ const FilterBrands = () => {
         <label htmlFor="adidasId" className="sidebar__form sidebar__label">
           Adidas
         </label>
-        <span className="sidebar__number">22</span>
+        <span className="sidebar__number">
+          {countBrands(allShoes, 'Adidas')}
+        </span>
       </div>
       <div className="sidebar__form-wrapper">
         <input
@@ -77,7 +82,7 @@ const FilterBrands = () => {
         <label htmlFor="nikeId" className="sidebar__form sidebar__label">
           Nike
         </label>
-        <span className="sidebar__number">22</span>
+        <span className="sidebar__number">{countBrands(allShoes, 'Nike')}</span>
       </div>
 
       <div className="sidebar__form-wrapper">
@@ -92,7 +97,7 @@ const FilterBrands = () => {
         <label htmlFor="pumaId" className="sidebar__form sidebar__label">
           Puma
         </label>
-        <span className="sidebar__number">22</span>
+        <span className="sidebar__number">{countBrands(allShoes, 'Puma')}</span>
       </div>
 
       <div className="sidebar__form-wrapper">
@@ -107,7 +112,7 @@ const FilterBrands = () => {
         <label htmlFor="filaId" className="sidebar__form sidebar__label">
           FILA
         </label>
-        <span className="sidebar__number">20</span>
+        <span className="sidebar__number">{countBrands(allShoes, 'FILA')}</span>
       </div>
       <button className="sidebar__show-more-button">Показать ещё</button>
     </div>

@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { ChangeEvent } from 'react';
 import { setIsForMenChecked, setIsForWomenChecked } from '../../store/slices';
+import { countShoesForMen, countShoesForWomen } from '../../utils/utils';
 
 const FilterGender = () => {
+  const allShoes = useSelector((state: RootState) => state.shoes.list);
+
   const isForMenChecked = useSelector(
     (state: RootState) => state.shoes.checkedFields.isForMenChecked
   );
@@ -43,7 +46,7 @@ const FilterGender = () => {
         <label htmlFor="formenId" className="sidebar__form sidebar__label">
           Мужчинам
         </label>
-        <span className="sidebar__number">22</span>
+        <span className="sidebar__number">{countShoesForMen(allShoes)}</span>
       </div>
       <div className="sidebar__form-wrapper">
         <input
@@ -57,7 +60,7 @@ const FilterGender = () => {
         <label htmlFor="forwomenId" className="sidebar__form sidebar__label">
           Женщинам
         </label>
-        <span className="sidebar__number">22</span>
+        <span className="sidebar__number">{countShoesForWomen(allShoes)}</span>
       </div>
     </div>
   );

@@ -164,3 +164,23 @@ export const filterShoes = (
 
   return filteredShoes;
 };
+
+export const countShoesOnSale = (arr: Shoe[]) => {
+  return arr.filter((shoe) => shoe.onSale).length;
+};
+
+export const countNewCollection = (arr: Shoe[]) => {
+  return arr.filter((shoe) => shoe.newCollection).length;
+};
+
+export const countShoesForMen = (arr: Shoe[]) => {
+  return arr.filter((shoe) => shoe.gender === 'men').length;
+};
+
+export const countShoesForWomen = (arr: Shoe[]) => {
+  return arr.filter((shoe) => shoe.gender === 'women').length;
+};
+
+export const countBrands = (arr: Shoe[], brand: String) => {
+  return arr.filter((shoe) => shoe.brand === brand).length;
+};

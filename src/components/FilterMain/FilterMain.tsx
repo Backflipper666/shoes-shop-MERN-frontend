@@ -1,13 +1,14 @@
 //FilterMain.tsx
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { useState, ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import {
   shoesFilteredOnSale,
   shoesFilteredByNewCollection,
   setIsOnSaleChecked,
   setIsNewCollectionChecked,
 } from '../../store/slices';
+import { countShoesOnSale, countNewCollection } from '../../utils/utils';
 
 const FilterMain = () => {
   const isOnSaleChecked = useSelector(
@@ -65,7 +66,7 @@ const FilterMain = () => {
         <label htmlFor="discountId" className="sidebar__form sidebar__label">
           Скидки
         </label>
-        <span className="sidebar__number">22</span>
+        <span className="sidebar__number">{countShoesOnSale(allShoes)}</span>
       </div>
       <div className="sidebar__form-wrapper">
         <input
@@ -82,7 +83,7 @@ const FilterMain = () => {
         >
           Новая коллекция
         </label>
-        <span className="sidebar__number">22</span>
+        <span className="sidebar__number">{countNewCollection(allShoes)}</span>
       </div>
     </div>
   );
