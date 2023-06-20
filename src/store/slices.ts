@@ -1,26 +1,6 @@
 //slices.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Shoe } from '../interfaces/shoe';
-
-interface CheckedFields {
-  isOnSaleChecked: boolean;
-  isNewCollectionChecked: boolean;
-  isNikeChecked: boolean;
-  isPumaChecked: boolean;
-  isAdidasChecked: boolean;
-  isFilaChecked: boolean;
-  isForMenChecked: boolean;
-  isForWomenChecked: boolean;
-}
-
-interface ShoesState {
-  list: Shoe[];
-  loading: boolean;
-  onSale: Shoe[];
-  shoesToBeRendered: Shoe[];
-  checkedFields: CheckedFields;
-  priceRange: { min: number; max: number };
-}
+import { ShoesState } from '../interfaces/shoe';
 
 const initialState: ShoesState = {
   list: [],

@@ -50,3 +50,23 @@ export interface Review {
   username: string;
   comment: string;
 }
+
+export interface CheckedFields {
+  isOnSaleChecked: boolean;
+  isNewCollectionChecked: boolean;
+  isNikeChecked: boolean;
+  isPumaChecked: boolean;
+  isAdidasChecked: boolean;
+  isFilaChecked: boolean;
+  isForMenChecked: boolean;
+  isForWomenChecked: boolean;
+}
+
+export interface ShoesState {
+  list: Shoe[];
+  loading: boolean;
+  onSale: Shoe[];
+  shoesToBeRendered: Shoe[];
+  checkedFields: CheckedFields;
+  priceRange: { min: number; max: number };
+}
