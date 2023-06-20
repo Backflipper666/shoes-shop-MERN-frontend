@@ -53,10 +53,7 @@ const Login: React.FC = () => {
               Log in
             </Button>
             Впервые здесь?
-            <Link to="/signup">
-              {' '}
-              <a href="">Зарегестрироваться</a>
-            </Link>
+            <Link to="/signup"> Зарегестрироваться</Link>
           </Form.Item>
         </Form>
       </div>

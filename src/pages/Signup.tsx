@@ -28,7 +28,7 @@ const tailFormItemLayout = {
   },
 };
 
-const App: React.FC = () => {
+const Signup: React.FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
@@ -37,6 +37,7 @@ const App: React.FC = () => {
 
   return (
     <div className="form">
+      {' '}
       <div className="signup__wrapper">
         {' '}
         <Form
@@ -108,10 +109,9 @@ const App: React.FC = () => {
               Register
             </Button>
             <div className="form__button-link">
-              {' '}
               Уже есть аккаунт?{' '}
-              <Link to="/login">
-                <a href="">Войти </a>
+              <Link to="/login" className="custom-link">
+                Войти
               </Link>
             </div>
           </Form.Item>
@@ -121,4 +121,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Signup;
