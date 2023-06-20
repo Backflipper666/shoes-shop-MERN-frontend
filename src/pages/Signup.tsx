@@ -1,70 +1,124 @@
 import { Link } from 'react-router-dom';
 
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
-import './pageStyles/Login.scss';
-const Signup: React.FC = () => {
+import { Button, Form, Input } from 'antd';
+import React from 'react';
+import './pageStyles/Signup.scss';
+
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 8 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 16 },
+  },
+};
+
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 8,
+    },
+  },
+};
+
+const App: React.FC = () => {
+  const [form] = Form.useForm();
+
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
   };
+
   return (
     <div className="form">
-      <div className="form__wrapper" id="components-form-demo-normal-login">
+      <div className="signup__wrapper">
+        {' '}
         <Form
-          name="normal_login"
-          className="login-form"
-          initialValues={{ remember: true }}
+          {...formItemLayout}
+          form={form}
+          name="register"
           onFinish={onFinish}
+          style={{ maxWidth: 600 }}
+          scrollToFirstError
         >
           <Form.Item
-            name="username"
-            rules={[{ required: true, message: 'Please input your Username!' }]}
+            name="email"
+            label="E-mail"
+            rules={[
+              {
+                type: 'email',
+                message: 'The input is not a valid E-mail!',
+              },
+              {
+                required: true,
+                message: 'Please input your E-mail!',
+              },
+            ]}
           >
-            <Input
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Username"
-            />
+            <Input />
           </Form.Item>
+
           <Form.Item
             name="password"
-            rules={[{ required: true, message: 'Please input your Password!' }]}
+            label="Password"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your password!',
+              },
+            ]}
+            hasFeedback
           >
-            <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-            />
-          </Form.Item>
-          <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
-            <a className="login-form-forgot" href="">
-              Forgot password
-            </a>
+            <Input.Password />
           </Form.Item>
 
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-            >
-              Зарегестрироваться
+          <Form.Item
+            name="confirm"
+            label="Confirm Password"
+            dependencies={['password']}
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: 'Please confirm your password!',
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error('The passwords do not match!')
+                  );
+                },
+              }),
+            ]}
+          >
+            <Input.Password className="form__confirm" />
+          </Form.Item>
+
+          <Form.Item {...tailFormItemLayout}>
+            <Button type="primary" htmlType="submit">
+              Register
             </Button>
-            Уже есть аккаунт?{' '}
-            <Link to="/login">
-              <a href="">Войти </a>
-            </Link>
-            <Link to="/signup"> </Link>
+            <div className="form__button-link">
+              {' '}
+              Уже есть аккаунт?{' '}
+              <Link to="/login">
+                <a href="">Войти </a>
+              </Link>
+            </div>
           </Form.Item>
-
-          <Form.Item></Form.Item>
         </Form>
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default App;
