@@ -1,8 +1,19 @@
+//Header.tsx
 import './Header.scss';
 import searchIcon from '../../assets/images/search-icon.svg';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { logoutUser } from '../../store/users';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.users.user);
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    dispatch(logoutUser({}));
+  };
   return (
     <nav className="header__outer-wrapper">
       <div className="header__left-wrapper">
@@ -12,11 +23,22 @@ const Header = () => {
       </div>
       <div className="header__right-wrapper">
         <img src={searchIcon} alt="search icon" className="header__search" />
-        <Link to="/login">
-          <button className="header__link header__link-auth header__link-yellow">
-            ВОЙТИ
+
+        {user ? (
+          <button
+            className="header__link header__link-auth header__link-yellow"
+            onClick={handleLogout}
+          >
+            ВЫЙТИ
           </button>
-        </Link>
+        ) : (
+          <Link to="/login">
+            <button className="header__link header__link-auth header__link-yellow">
+              ВОЙТИ
+            </button>
+          </Link>
+        )}
+
         <button className="header__link header__link-cart header__link-yellow">
           КОРЗИНА
         </button>

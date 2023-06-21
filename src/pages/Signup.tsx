@@ -1,9 +1,12 @@
 //Signup.tsx
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSignupUserMutation } from '../services/apiCallSignup';
 
 import { Button, Form, Input } from 'antd';
+import { loginUser } from '../store/users';
 import React from 'react';
 import './pageStyles/Signup.scss';
 
@@ -34,6 +37,9 @@ const tailFormItemLayout = {
 const Signup: React.FC = () => {
   const [signupUser, { isLoading, isError }] = useSignupUserMutation();
 
+  const user = useSelector((state: RootState) => state.users.user);
+  const dispatch = useDispatch();
+
   const onFinish = async (values: any) => {
     console.log('Received values of form: ', values);
     setEmail(values.email);
@@ -48,6 +54,8 @@ const Signup: React.FC = () => {
         email: values.email,
         password: values.password,
       });
+      localStorage.setItem('user', JSON.stringify(result));
+      dispatch(loginUser(result));
 
       // Handle the success response
       console.log('result is: ', result); // You can access the response data here
