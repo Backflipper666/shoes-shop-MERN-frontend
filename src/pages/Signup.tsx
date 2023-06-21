@@ -1,4 +1,7 @@
+//Signup.tsx
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useSignupUserMutation } from '../services/apiCallSignup';
 
 import { Button, Form, Input } from 'antd';
 import React from 'react';
@@ -29,12 +32,34 @@ const tailFormItemLayout = {
 };
 
 const Signup: React.FC = () => {
-  const [form] = Form.useForm();
+  const [signupUser, { isLoading, isError }] = useSignupUserMutation();
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     console.log('Received values of form: ', values);
-  };
+    setEmail(values.email);
+    setPassword(values.password);
 
+    // Call the signupUserQuery function with the email and password
+    try {
+      console.log('well, email is: ', values.email);
+      console.log('well, password is: ', values.password);
+
+      const result = await signupUser({
+        email: values.email,
+        password: values.password,
+      });
+
+      // Handle the success response
+      console.log('result is: ', result); // You can access the response data here
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+    }
+  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [form] = Form.useForm();
   return (
     <div className="form">
       {' '}
