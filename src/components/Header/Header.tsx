@@ -5,10 +5,26 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { logoutUser } from '../../store/users';
+import { loginUser as loginUserAction } from '../../store/users';
+import { useEffect } from 'react';
+import { User } from '../../interfaces/shoe';
 
 const Header = () => {
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const parsedUser: User = JSON.parse(storedUser);
+      // Handle the parsedUser object
+      dispatch(loginUserAction(parsedUser));
+    }
+  }, []);
+
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.users.user);
+  let email: string | null = null;
+  if (user) {
+    email = Object.values(user)[0];
+  }
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -22,6 +38,7 @@ const Header = () => {
         <button className="header__link">ЖЕНЩИНАМ</button>{' '}
       </div>
       <div className="header__right-wrapper">
+        <p className="header__link">{email}</p>
         <img src={searchIcon} alt="search icon" className="header__search" />
 
         {user ? (

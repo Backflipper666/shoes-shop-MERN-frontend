@@ -70,3 +70,8 @@ export interface ShoesState {
   checkedFields: CheckedFields;
   priceRange: { min: number; max: number };
 }
+
+export interface User {
+  email: string;
+  token: string;
+}
