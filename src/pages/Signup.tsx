@@ -73,8 +73,10 @@ const Signup: React.FC = () => {
       } else {
         console.error('Error occurred:', result);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      setLocalError(error);
+      setSuccess(false);
     }
   };
 
@@ -122,6 +124,26 @@ const Signup: React.FC = () => {
                 required: true,
                 message: 'Please input your password!',
               },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || value.length >= 6) {
+                    // The password is at least 6 characters long or empty
+                    return Promise.resolve();
+                  }
+
+                  if (!/^\w*$/.test(value)) {
+                    // The password contains at least one non-alphanumeric character
+                    return Promise.reject(
+                      new Error('Password must contain at least one symbol!')
+                    );
+                  }
+
+                  // The password does not meet the minimum length requirement
+                  return Promise.reject(
+                    new Error('Password must be at least 6 characters long!')
+                  );
+                },
+              }),
             ]}
             hasFeedback
           >
