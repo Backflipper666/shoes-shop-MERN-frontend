@@ -1,13 +1,12 @@
-//apiCallSignup.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({
-  reducerPath: 'signupApi',
+  reducerPath: 'loginApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000' }),
   endpoints: (builder) => ({
-    signupUser: builder.mutation<void, { email: string; password: string }>({
+    loginUser: builder.mutation<void, { email: string; password: string }>({
       query: (data) => ({
-        url: '/api/user/signup',
+        url: '/api/user/login',
         method: 'POST',
         body: data,
       }),
@@ -15,5 +14,5 @@ export const api = createApi({
   }),
 });
 
-export const { useSignupUserMutation } = api;
+export const { useLoginUserMutation } = api;
 export default api;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSignupUserMutation } from '../services/apiCallSignup';
 
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Alert, Space } from 'antd';
 import { loginUser } from '../store/users';
 import React from 'react';
 import './pageStyles/Signup.scss';
@@ -45,27 +45,43 @@ const Signup: React.FC = () => {
     setEmail(values.email);
     setPassword(values.password);
 
-    // Call the signupUserQuery function with the email and password
     try {
-      console.log('well, email is: ', values.email);
-      console.log('well, password is: ', values.password);
-
       const result = await signupUser({
         email: values.email,
         password: values.password,
       });
-      localStorage.setItem('user', JSON.stringify(result));
-      dispatch(loginUser(result));
 
-      // Handle the success response
-      console.log('result is: ', result); // You can access the response data here
+      if ('data' in result) {
+        const { data } = result;
+        localStorage.setItem('user', JSON.stringify(data));
+        dispatch(loginUser(data));
+        setLocalError(null);
+        setSuccess(true);
+
+        console.log('result is: ', data); // You can access the response data here
+      } else if ('error' in result) {
+        const { error: mistake } = result as { error: any };
+        console.log('Here is the errorrr: ', mistake);
+        if ('data' in mistake && mistake.data) {
+          console.log('furthermore, error.data is: ', mistake.data);
+          const { error: theError } = mistake.data;
+          console.log('theError is:::::', theError);
+          console.log('local error', localError);
+          setLocalError(theError);
+          setSuccess(false);
+        }
+      } else {
+        console.error('Error occurred:', result);
+      }
     } catch (error) {
-      // Handle the error
       console.error(error);
     }
   };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [localError, setLocalError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const [form] = Form.useForm();
   return (
@@ -141,6 +157,34 @@ const Signup: React.FC = () => {
             <Button type="primary" htmlType="submit">
               Register
             </Button>
+            {localError && (
+              <Space
+                direction="vertical"
+                style={{ width: '100%' }}
+                className="form__error-text"
+              >
+                <Alert
+                  message={localError}
+                  type="error"
+                  closable
+                  onClose={() => setLocalError(null)}
+                />
+              </Space>
+            )}
+            {success && (
+              <Space
+                direction="vertical"
+                style={{ width: '100%' }}
+                className="form__error-text"
+              >
+                <Alert
+                  message="Вы успешно зарегестрировались"
+                  type="success"
+                  closable
+                  onClose={() => setSuccess(false)}
+                />
+              </Space>
+            )}
             <div className="form__button-link">
               Уже есть аккаунт?{' '}
               <Link to="/login" className="custom-link">

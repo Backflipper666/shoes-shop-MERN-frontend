@@ -3,6 +3,7 @@ import shoesReducer from './slices';
 import usersReducer from './users';
 import api from '../services/apiCallShoes';
 import signupApi from '../services/apiCallSignup';
+import loginApi from '../services/apiCallLogin';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     shoesApi: api.reducer,
     users: usersReducer,
     signupApi: signupApi.reducer,
+    loginApi: loginApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -17,6 +19,7 @@ export const store = configureStore({
     }).concat([
       api.middleware as Middleware,
       signupApi.middleware as Middleware,
+      loginApi.middleware as Middleware,
     ]),
 });
 
