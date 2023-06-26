@@ -200,7 +200,7 @@ const Signup: React.FC = () => {
                 className="form__error-text"
               >
                 <Alert
-                  message="Вы успешно зарегестрировались"
+                  message="Вы успешно зарегистрировались"
                   type="success"
                   closable
                   onClose={() => setSuccess(false)}

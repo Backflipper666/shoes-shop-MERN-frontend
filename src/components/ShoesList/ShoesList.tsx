@@ -1,5 +1,6 @@
 import { useGetShoesQuery } from '../../services/apiCallShoes';
 import ShoesDetail from '../ShoesDetail/ShoesDetail';
+import ShoesItem from '../ShoesItem.tsx/ShoesItem';
 import Sidebar from '../Sidebar/Sidebar';
 import './ShoeList.scss';
 import { useDispatch, useSelector } from 'react-redux';

@@ -74,4 +74,11 @@ export interface ShoesState {
 export interface User {
   email: string;
   token: string;
+  cart: [];
+  favorites: [];
+}
+
+export interface Image {
+  contentType: string;
+  data: { type: string; data: number[] };
 }

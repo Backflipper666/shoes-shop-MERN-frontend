@@ -8,6 +8,7 @@ import Navbar from './components/Navbar/Navbar';
 import Header from './components/Header/Header';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Favorites from './pages/Favorites';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </div>
       </BrowserRouter>
