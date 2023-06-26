@@ -3,7 +3,7 @@ import { Shoe } from '../interfaces/shoe';
 
 export function truncateString(
   str: string,
-  maxCharacters: number = 60
+  maxCharacters: number = 40
 ): string {
   if (str.length <= maxCharacters) {
     return str;

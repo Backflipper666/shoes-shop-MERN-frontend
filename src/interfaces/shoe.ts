@@ -3,7 +3,7 @@ export interface Shoe {
   title: string;
   description: string;
   color: string;
-  brand?: string;
+  brand: 'FILA' | 'Nike' | 'Adidas' | 'Puma' | 'Other';
   price: number;
   size: number;
   material?: string;

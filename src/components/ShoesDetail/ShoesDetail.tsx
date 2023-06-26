@@ -1,13 +1,21 @@
-//ShoeDetail.tsx
 import { Shoe } from '../../interfaces/shoe';
-import nextId from 'react-id-generator';
+import { RootState } from '../../store/store';
 import './ShoesDetail.scss';
 import { useState } from 'react';
 import { truncateString } from '../../utils/utils';
 import { Image } from '../../interfaces/shoe';
+import { useDispatch, useSelector } from 'react-redux';
+
+interface User {
+  email: string;
+  token: string;
+}
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const [currentImage, setCurrentImage] = useState<Image>(shoe.image);
+  const user = useSelector<RootState, string | User | null>(
+    (state) => state.users.user
+  );
 
   const handleMouseEnter = (image?: Image) => {
     if (image) {
@@ -18,6 +26,17 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const handleMouseLeave = () => {
     setCurrentImage(shoe.image);
   };
+
+  const addToFavorites = () => {};
+
+  let userEmail: string | null = null;
+  if (typeof user === 'string') {
+    userEmail = user;
+  } else if (user && typeof user === 'object') {
+    userEmail = user.email;
+  }
+
+  console.log('userEmail is: ', userEmail);
 
   return (
     <div className="card">
@@ -58,6 +77,8 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
         <h3>{shoe.title}</h3>
         <p className="card__description">{truncateString(shoe.description)}</p>
         <p className="card__price">{shoe.price} ₸</p>
+
+        {userEmail && <p>User email: {userEmail}</p>}
       </div>
     </div>
   );

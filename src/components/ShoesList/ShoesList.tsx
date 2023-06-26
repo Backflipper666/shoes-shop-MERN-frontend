@@ -1,14 +1,9 @@
 import { useGetShoesQuery } from '../../services/apiCallShoes';
 import ShoesDetail from '../ShoesDetail/ShoesDetail';
-import ShoesItem from '../ShoesItem.tsx/ShoesItem';
 import Sidebar from '../Sidebar/Sidebar';
 import './ShoeList.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  shoesRequested,
-  shoesFetched,
-  shoesRequestFailed,
-} from '../../store/slices';
+import { shoesFetched, shoesRequestFailed } from '../../store/slices';
 import { RootState } from '../../store/store'; // Import RootState and Shoe types
 import { useEffect } from 'react';
 import { Shoe } from '../../interfaces/shoe';

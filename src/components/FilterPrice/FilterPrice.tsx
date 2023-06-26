@@ -15,7 +15,7 @@ const FilterPrice = () => {
     (state: RootState) => state.shoes.checkedFields
   );
 
-  const [minValue, setMinValue] = useState(10000);
+  const [minValue, setMinValue] = useState(2000);
   const [maxValue, setMaxValue] = useState(100000);
 
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const FilterPrice = () => {
           barInnerColor="grey"
           stepOnly={true}
           ruler={false}
-          min={10000}
+          min={2000}
           max={100000}
           step={1000}
           minValue={minValue}
