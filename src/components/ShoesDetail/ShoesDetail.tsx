@@ -1,17 +1,14 @@
-import { Shoe } from '../../interfaces/shoe';
+import { Shoe, User } from '../../interfaces/shoe';
 import { RootState } from '../../store/store';
 import './ShoesDetail.scss';
 import { useState } from 'react';
 import { truncateString } from '../../utils/utils';
 import { Image } from '../../interfaces/shoe';
-import { useDispatch, useSelector } from 'react-redux';
-
-interface User {
-  email: string;
-  token: string;
-}
+import { useSelector } from 'react-redux';
+import { useAddToFavoritesMutation } from '../../services/apiCallAddToFavorites';
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
+  const [addToFavorites, { isLoading, isError }] = useAddToFavoritesMutation();
   const [currentImage, setCurrentImage] = useState<Image>(shoe.image);
   const user = useSelector<RootState, string | User | null>(
     (state) => state.users.user
@@ -27,8 +24,6 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
     setCurrentImage(shoe.image);
   };
 
-  const addToFavorites = () => {};
-
   let userEmail: string | null = null;
   if (typeof user === 'string') {
     userEmail = user;
@@ -36,7 +31,30 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
     userEmail = user.email;
   }
 
-  console.log('userEmail is: ', userEmail);
+  let userToken: string | null = null;
+  if (typeof user === 'string') {
+    userToken = user;
+  } else if (user && typeof user === 'object') {
+    userToken = user.token;
+  }
+
+  console.log('amigo, user.token is: ', userToken);
+
+  const handleAddToFavorites = async () => {
+    try {
+      const result = await addToFavorites({
+        email: userEmail,
+        shoeId: shoe._id,
+        token: userToken,
+      });
+      console.log('result is: ', result);
+
+      console.log('typeof usserEmail is: ', typeof userEmail);
+      console.log('typeof shoe.I_id is: ', typeof shoe._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="card">
@@ -66,7 +84,7 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
           </p>
         )}
 
-        <span className="card__heart"></span>
+        <span className="card__heart" onClick={handleAddToFavorites}></span>
 
         <img
           src={`data:${currentImage.contentType};base64,${currentImage.data}`}
@@ -77,8 +95,6 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
         <h3>{shoe.title}</h3>
         <p className="card__description">{truncateString(shoe.description)}</p>
         <p className="card__price">{shoe.price} ₸</p>
-
-        {userEmail && <p>User email: {userEmail}</p>}
       </div>
     </div>
   );

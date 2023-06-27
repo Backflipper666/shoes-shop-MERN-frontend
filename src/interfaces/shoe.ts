@@ -82,3 +82,8 @@ export interface Image {
   contentType: string;
   data: { type: string; data: number[] };
 }
+
+export interface User {
+  email: string;
+  token: string;
+}
