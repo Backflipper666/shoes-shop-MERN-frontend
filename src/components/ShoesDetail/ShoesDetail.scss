@@ -96,6 +96,18 @@ html {
   top: 7px;
   right: 5px;
 }
+
+.card__heart-red {
+  background-image: url('../../assets/images/heart-red.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 7px;
+  right: 5px;
+}
+
 .card__description {
   font-size: 12px;
   width: 180px;

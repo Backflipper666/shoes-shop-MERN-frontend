@@ -1,3 +1,4 @@
+//ShoeDetail.tsx
 import { Shoe, User } from '../../interfaces/shoe';
 import { RootState } from '../../store/store';
 import './ShoesDetail.scss';
@@ -6,13 +7,20 @@ import { truncateString } from '../../utils/utils';
 import { Image } from '../../interfaces/shoe';
 import { useSelector } from 'react-redux';
 import { useAddToFavoritesMutation } from '../../services/apiCallAddToFavorites';
+import { useRemoveFromFavoritesMutation } from '../../services/apiCallRemoveFromFavorites';
+import { useNavigate } from 'react-router-dom';
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [addToFavorites, { isLoading, isError }] = useAddToFavoritesMutation();
+  const [removeFromFavorites] = useRemoveFromFavoritesMutation();
   const [currentImage, setCurrentImage] = useState<Image>(shoe.image);
   const user = useSelector<RootState, string | User | null>(
     (state) => state.users.user
   );
+  console.log('user is: ', user);
+
+  const navigate = useNavigate();
 
   const handleMouseEnter = (image?: Image) => {
     if (image) {
@@ -38,19 +46,31 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
     userToken = user.token;
   }
 
-  console.log('amigo, user.token is: ', userToken);
-
   const handleAddToFavorites = async () => {
+    if (!user) {
+      return navigate('/login');
+    }
     try {
-      const result = await addToFavorites({
-        email: userEmail,
-        shoeId: shoe._id,
-        token: userToken,
-      });
-      console.log('result is: ', result);
+      if (!isFavorite) {
+        const result = await addToFavorites({
+          email: userEmail,
+          shoeId: shoe._id,
+          token: userToken,
+        });
+        setIsFavorite(true);
 
-      console.log('typeof usserEmail is: ', typeof userEmail);
-      console.log('typeof shoe.I_id is: ', typeof shoe._id);
+        console.log('result is: ', result);
+
+        console.log('typeof usserEmail is: ', typeof userEmail);
+        console.log('typeof shoe.I_id is: ', typeof shoe._id);
+      } else {
+        const result = await removeFromFavorites({
+          email: userEmail,
+          shoeId: shoe._id,
+          token: userToken,
+        });
+        setIsFavorite(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +104,10 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
           </p>
         )}
 
-        <span className="card__heart" onClick={handleAddToFavorites}></span>
+        <span
+          className={isFavorite ? 'card__heart-red' : 'card__heart'}
+          onClick={handleAddToFavorites}
+        ></span>
 
         <img
           src={`data:${currentImage.contentType};base64,${currentImage.data}`}

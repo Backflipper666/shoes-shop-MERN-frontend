@@ -10,14 +10,12 @@ import { Shoe } from '../../interfaces/shoe';
 
 const ShoesList = () => {
   const { data: shoes, isLoading, isError } = useGetShoesQuery();
-  // console.log('tnh', shoes);
 
   const dispatch = useDispatch();
   const globalState = useSelector((state: RootState) => state); // Provide RootState type annotation
   const shoesToBeRendered: Shoe[] = (
     globalState.shoes as { shoesToBeRendered: Shoe[] }
   ).shoesToBeRendered; // Type assertion for shoesToBeRendered
-  console.log('shoesTOBeRenderrred: ', shoesToBeRendered);
 
   useEffect(() => {
     if (isError) {

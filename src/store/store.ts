@@ -5,6 +5,7 @@ import api from '../services/apiCallShoes';
 import signupApi from '../services/apiCallSignup';
 import loginApi from '../services/apiCallLogin';
 import addToFavoritesApi from '../services/apiCallAddToFavorites';
+import removeFromFavoritesApi from '../services/apiCallRemoveFromFavorites';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     signupApi: signupApi.reducer,
     loginApi: loginApi.reducer,
     addToFavoritesApi: addToFavoritesApi.reducer,
+    removeFromFavoritesApi: removeFromFavoritesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -23,6 +25,7 @@ export const store = configureStore({
       signupApi.middleware as Middleware,
       loginApi.middleware as Middleware,
       addToFavoritesApi.middleware as Middleware,
+      removeFromFavoritesApi.middleware as Middleware,
     ]),
 });
 
