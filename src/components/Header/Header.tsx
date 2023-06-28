@@ -8,6 +8,7 @@ import { logoutUser } from '../../store/users';
 import { loginUser as loginUserAction } from '../../store/users';
 import { useEffect } from 'react';
 import { User } from '../../interfaces/shoe';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Header = () => {
     }
   }, []);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.users.user);
   let email: string | null = null;
@@ -40,6 +42,12 @@ const Header = () => {
       <div className="header__right-wrapper">
         <p className="header__link">{email}</p>
         <img src={searchIcon} alt="search icon" className="header__search" />
+        <button
+          className="header__link header__link-auth header__link-yellow"
+          onClick={() => navigate('/favorites')}
+        >
+          ИЗБРАННОЕ
+        </button>
 
         {user ? (
           <button

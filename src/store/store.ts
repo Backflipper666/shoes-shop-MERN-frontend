@@ -1,3 +1,4 @@
+//store.ts
 import { configureStore, Middleware } from '@reduxjs/toolkit';
 import shoesReducer from './slices';
 import usersReducer from './users';
@@ -6,6 +7,7 @@ import signupApi from '../services/apiCallSignup';
 import loginApi from '../services/apiCallLogin';
 import addToFavoritesApi from '../services/apiCallAddToFavorites';
 import removeFromFavoritesApi from '../services/apiCallRemoveFromFavorites';
+import userApi from '../services/apiCallUsers'; // Update the import
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ export const store = configureStore({
     loginApi: loginApi.reducer,
     addToFavoritesApi: addToFavoritesApi.reducer,
     removeFromFavoritesApi: removeFromFavoritesApi.reducer,
+
+    userApi: userApi.reducer, // Update the key to 'userApi' instead of 'getUserApi'
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -26,6 +30,8 @@ export const store = configureStore({
       loginApi.middleware as Middleware,
       addToFavoritesApi.middleware as Middleware,
       removeFromFavoritesApi.middleware as Middleware,
+
+      userApi.middleware as Middleware, // Update the key to 'userApi' instead of 'getUserApi'
     ]),
 });
 

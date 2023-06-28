@@ -87,3 +87,10 @@ export interface User {
   email: string;
   token: string;
 }
+
+export interface AllUsers {
+  _id: string;
+  cart: string[];
+  email: string;
+  favorites: string[];
+}

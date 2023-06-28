@@ -1,8 +1,8 @@
 //ShoeDetail.tsx
-import { Shoe, User } from '../../interfaces/shoe';
+import { Shoe, User, AllUsers } from '../../interfaces/shoe';
 import { RootState } from '../../store/store';
 import './ShoesDetail.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { truncateString } from '../../utils/utils';
 import { Image } from '../../interfaces/shoe';
 import { useSelector } from 'react-redux';
@@ -11,16 +11,34 @@ import { useRemoveFromFavoritesMutation } from '../../services/apiCallRemoveFrom
 import { useNavigate } from 'react-router-dom';
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [addToFavorites, { isLoading, isError }] = useAddToFavoritesMutation();
   const [removeFromFavorites] = useRemoveFromFavoritesMutation();
   const [currentImage, setCurrentImage] = useState<Image>(shoe.image);
+  const navigate = useNavigate();
   const user = useSelector<RootState, string | User | null>(
     (state) => state.users.user
   );
-  console.log('user is: ', user);
+  const allUsers: AllUsers[] | null = useSelector<RootState, AllUsers[] | null>(
+    (state) => state.users.allUsers
+  );
 
-  const navigate = useNavigate();
+  let userEmail: string = '';
+  if (typeof user === 'string') {
+    userEmail = user;
+  } else if (user && typeof user === 'object') {
+    userEmail = user.email;
+  }
+
+  const authenticatedUser = allUsers?.filter(
+    (user) => user.email === userEmail
+  )[0];
+
+  const favorites: string[] | undefined = authenticatedUser?.favorites || [];
+
+  const isItReallyFavorite = favorites.includes(shoe._id.toString());
+  const [isFavorite, setIsFavorite] = useState<boolean>(isItReallyFavorite);
+
+  // console.log('allUsers is beautiful ', allUsers);
 
   const handleMouseEnter = (image?: Image) => {
     if (image) {
@@ -31,13 +49,6 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const handleMouseLeave = () => {
     setCurrentImage(shoe.image);
   };
-
-  let userEmail: string | null = null;
-  if (typeof user === 'string') {
-    userEmail = user;
-  } else if (user && typeof user === 'object') {
-    userEmail = user.email;
-  }
 
   let userToken: string | null = null;
   if (typeof user === 'string') {
@@ -58,11 +69,6 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
           token: userToken,
         });
         setIsFavorite(true);
-
-        console.log('result is: ', result);
-
-        console.log('typeof usserEmail is: ', typeof userEmail);
-        console.log('typeof shoe.I_id is: ', typeof shoe._id);
       } else {
         const result = await removeFromFavorites({
           email: userEmail,
