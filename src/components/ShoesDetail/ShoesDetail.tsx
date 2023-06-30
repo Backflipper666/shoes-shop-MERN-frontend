@@ -8,7 +8,7 @@ import { Image } from '../../interfaces/shoe';
 import { useSelector } from 'react-redux';
 import { useAddToFavoritesMutation } from '../../services/apiCallAddToFavorites';
 import { useRemoveFromFavoritesMutation } from '../../services/apiCallRemoveFromFavorites';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const [addToFavorites, { isLoading, isError }] = useAddToFavoritesMutation();
@@ -85,7 +85,10 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   return (
     <div className="card">
       <div className="card__wrapper">
-        <div className="card__span-wrapper">
+        <div
+          className="card__span-wrapper"
+          onClick={() => navigate(`/${shoe._id}`)}
+        >
           <span className="card__indicator card__indicator-1"></span>
           <span
             className="card__indicator card__indicator-2"
