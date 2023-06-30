@@ -12,6 +12,7 @@ html {
   --button-text-color: white;
   --dark-grey: #1b1b1b;
   --light-grey: #908a8a;
+  --lightest-grey: #c5bcbc;
 }
 .card__wrapper {
   border: 1px solid #000;
@@ -29,30 +30,32 @@ html {
   top: 0px;
   right: 0px;
   display: flex;
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
 }
 .card__indicator {
   width: 65px;
-  // border: 1px solid #000;
   height: 350px;
   background-color: rgba(144, 138, 138, 0);
-  opacity: 0.2;
+  opacity: 0;
   position: relative;
 
-  &:hover {
-    // background-color: var(--dark-grey);
-  }
+  opacity: 1;
 
   &::before {
     height: 4px;
     width: 60px;
     content: '';
-    background-color: var(--light-grey);
+    background-color: var(--lightest-grey);
     position: absolute;
     top: 0px;
     left: 2px;
   }
 
   &:hover::before {
+    opacity: 1;
     background-color: var(--dark-grey);
   }
 }

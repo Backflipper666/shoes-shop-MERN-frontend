@@ -35,7 +35,9 @@ const Header = () => {
   return (
     <nav className="header__outer-wrapper">
       <div className="header__left-wrapper">
-        <h3 className="header__title">STEP STREET</h3>{' '}
+        <h3 className="header__title" onClick={() => navigate('/')}>
+          STEP STREET
+        </h3>{' '}
         <button className="header__link">МУЖЧИНАМ</button>
         <button className="header__link">ЖЕНЩИНАМ</button>{' '}
       </div>
