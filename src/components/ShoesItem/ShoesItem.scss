@@ -1,0 +1,57 @@
+.shoes-item {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  .shoes-item__title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .shoes-item__brand {
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  .shoes-item__description {
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+
+  .shoes-item__color {
+    font-size: 14px;
+    font-weight: normal;
+    color: #999;
+  }
+
+  .shoes-item__images {
+    margin-bottom: 10px;
+
+    .shoes-item__image {
+      margin: 5px;
+    }
+  }
+
+  .shoes-item__price {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .shoes-item__material {
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  .shoes-item__season {
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  .shoes-item__size {
+    font-size: 14px;
+    font-weight: normal;
+  }
+}

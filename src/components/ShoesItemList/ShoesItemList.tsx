@@ -10,6 +10,8 @@ import { RootState } from '../../store/store';
 import { useEffect } from 'react';
 import { Shoe, AllUsers, User } from '../../interfaces/shoe';
 import { useGetUsersQuery } from '../../services/apiCallUsers';
+import ShoesItem from '../ShoesItem/ShoesItem';
+import { Link } from 'react-router-dom';
 
 const ShoesItemList: React.FC = () => {
   const allUsers: AllUsers[] | null = useSelector<RootState, AllUsers[] | null>(
