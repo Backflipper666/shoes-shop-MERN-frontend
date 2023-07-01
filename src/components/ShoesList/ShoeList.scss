@@ -5,3 +5,11 @@
   row-gap: 30px;
   flex-wrap: wrap;
 }
+.shoelist__spinner {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+.shoelist {
+  margin-bottom: 100px;
+}

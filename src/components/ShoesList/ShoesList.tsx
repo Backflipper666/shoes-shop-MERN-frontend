@@ -10,6 +10,7 @@ import { RootState } from '../../store/store';
 import { useEffect } from 'react';
 import { Shoe, AllUsers } from '../../interfaces/shoe';
 import { useGetUsersQuery } from '../../services/apiCallUsers';
+import Spinner from '../Spinner/Spinner';
 
 const ShoesList = () => {
   const { data: shoes, isLoading, isError } = useGetShoesQuery();
@@ -45,7 +46,11 @@ const ShoesList = () => {
   }, [dispatch, isError, shoes, allUsers, allUsersObj]);
 
   if (isLoading || userLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="shoelist__spinner">
+        <Spinner></Spinner>
+      </div>
+    );
   }
   if (isError || userError) {
     return <div>Error occurred while fetching data.</div>;

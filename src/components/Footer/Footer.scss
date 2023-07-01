@@ -1,3 +1,4 @@
+//Footer.scss
 .footer__wrapper {
   height: 100px;
   width: 100%;
@@ -7,7 +8,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  // position: absolute; /* Add this line */
+  bottom: 0; /* Add this line */
 }
+
 .header__title {
   color: var(--font-color);
   position: relative;

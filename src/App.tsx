@@ -27,7 +27,9 @@ function App() {
             <Route path="/:id" element={<ShoesItem />} />
           </Routes>
         </div>
-        <Footer />
+        <div className="app__footer-wrapper">
+          <Footer />
+        </div>
       </BrowserRouter>
     </div>
   );

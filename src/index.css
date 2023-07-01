@@ -19,3 +19,13 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
+.App {
+  position: relative;
+}
+
+.app__footer-wrapper {
+  bottom: -25px;
+  right: 0;
+  width: 100%;
+}

@@ -18,7 +18,8 @@
 }
 .sidebar__wrapper {
   width: 320px;
-  position: absolute;
+  // position: absolute;
+  float: left;
 }
 
 .sidebar__filter-container {
