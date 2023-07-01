@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const api = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000',
+    baseUrl: 'https://sneakers-shop-step-street.onrender.com',
   }), // Replace '/api' with your API base URL
   endpoints: (builder) => ({
     getUsers: builder.query({

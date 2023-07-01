@@ -46,11 +46,7 @@ const ShoesList = () => {
   }, [dispatch, isError, shoes, allUsers, allUsersObj, isLoading]);
 
   if (isLoading || userLoading) {
-    return (
-      <div className="shoelist__spinner">
-        <Spinner></Spinner>
-      </div>
-    );
+    return <div className="shoelist__spinner">{<Spinner></Spinner>}</div>;
   }
   if (isError || userError) {
     return <div>Error occurred while fetching data.</div>;

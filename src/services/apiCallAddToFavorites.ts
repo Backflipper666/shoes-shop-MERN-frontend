@@ -3,7 +3,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({
   reducerPath: 'addToFavoritesApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://sneakers-shop-step-street.onrender.com',
+  }),
   endpoints: (builder) => ({
     addToFavorites: builder.mutation<
       void,

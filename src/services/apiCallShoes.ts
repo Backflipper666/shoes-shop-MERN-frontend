@@ -5,7 +5,7 @@ import { Shoe } from '../interfaces/shoe';
 export const api = createApi({
   reducerPath: 'shoesApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000',
+    baseUrl: 'https://sneakers-shop-step-street.onrender.com',
   }), // Replace '/api' with your API base URL
   endpoints: (builder) => ({
     getShoes: builder.query<Shoe[], void>({
