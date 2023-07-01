@@ -1,0 +1,27 @@
+.footer__wrapper {
+  height: 100px;
+  width: 100%;
+  background-color: black;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header__title {
+  color: var(--font-color);
+  position: relative;
+  font-size: 40px;
+  font-family: 'Walkway black', Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+.footer__title {
+  cursor: default;
+}
+
+.footer__year {
+  color: white;
+}

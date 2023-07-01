@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Favorites from './pages/Favorites';
 import ShoesItem from './components/ShoesItem/ShoesItem';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/:id" element={<ShoesItem />} />
           </Routes>
         </div>
+        <Footer />
       </BrowserRouter>
     </div>
   );
