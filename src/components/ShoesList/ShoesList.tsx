@@ -43,7 +43,7 @@ const ShoesList = () => {
     if (allUsers) {
       dispatch(getAllUsers(allUsers));
     }
-  }, [dispatch, isError, shoes, allUsers, allUsersObj]);
+  }, [dispatch, isError, shoes, allUsers, allUsersObj, isLoading]);
 
   if (isLoading || userLoading) {
     return (

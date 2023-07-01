@@ -42,7 +42,6 @@ const Signup: React.FC = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values: any) => {
-    console.log('Received values of form: ', values);
     setEmail(values.email);
     setPassword(values.password);
 
@@ -59,24 +58,15 @@ const Signup: React.FC = () => {
         setLocalError(null);
         setSuccess(true);
         navigate('/');
-
-        console.log('result is: ', data); // You can access the response data here
       } else if ('error' in result) {
         const { error: mistake } = result as { error: any };
-        console.log('Here is the errorrr: ', mistake);
         if ('data' in mistake && mistake.data) {
-          console.log('furthermore, error.data is: ', mistake.data);
           const { error: theError } = mistake.data;
-          console.log('theError is:::::', theError);
-          console.log('local error', localError);
           setLocalError(theError);
           setSuccess(false);
         }
-      } else {
-        console.error('Error occurred:', result);
       }
     } catch (error: any) {
-      console.error(error);
       setLocalError(error);
       setSuccess(false);
     }

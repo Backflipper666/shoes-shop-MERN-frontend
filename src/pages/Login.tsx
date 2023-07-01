@@ -18,12 +18,7 @@ const Login: React.FC = () => {
   const user = useSelector((state: RootState) => state.users.user);
   const dispatch = useDispatch();
   const onFinish = async (values: any) => {
-    console.log('Received values of form: ', values);
-
     try {
-      console.log('well, email is: ', values.email);
-      console.log('well, password is: ', values.password);
-
       const result = await loginUser({
         email: values.email,
         password: values.password,
@@ -31,14 +26,10 @@ const Login: React.FC = () => {
 
       if ('error' in result) {
         // Handle the error
-        console.error('How unfortunate', result.error);
-
         if ('data' in result.error) {
           const data = result.error.data as { error: string }; // Type assertion
 
-          console.log('data inside result.error:', data);
           const { error } = data;
-          console.log('listen up, the error in data is: ', error);
           setLocalError(error);
           setSuccess(false);
         }
@@ -50,11 +41,10 @@ const Login: React.FC = () => {
         navigate('/');
 
         // Handle the success response
-        console.log('result is yeheeey!: ', data); // You can access the response data here
       }
     } catch (error) {
       // Handle other errors
-      console.error(error);
+      throw new Error('an error occurred');
     }
   };
 

@@ -38,8 +38,6 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const isItReallyFavorite = favorites.includes(shoe._id.toString());
   const [isFavorite, setIsFavorite] = useState<boolean>(isItReallyFavorite);
 
-  // console.log('allUsers is beautiful ', allUsers);
-
   const handleMouseEnter = (image?: Image) => {
     if (image) {
       setCurrentImage(image);
@@ -78,7 +76,7 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
         setIsFavorite(false);
       }
     } catch (error) {
-      console.log(error);
+      throw new Error('an error occurred');
     }
   };
 
