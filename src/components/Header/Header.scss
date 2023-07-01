@@ -28,6 +28,7 @@
   letter-spacing: 2px;
   display: inline;
   margin-right: 50px;
+  cursor: pointer;
 }
 
 .header__title::after {
@@ -147,4 +148,15 @@
   position: absolute;
   top: 13px;
   left: -50px;
+}
+
+.header__link-fav {
+  color: var(--aux-color);
+}
+
+.header__email {
+  cursor: default;
+  &::before {
+    background-image: none;
+  }
 }

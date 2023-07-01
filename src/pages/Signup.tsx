@@ -4,7 +4,7 @@ import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSignupUserMutation } from '../services/apiCallSignup';
-
+import { useNavigate } from 'react-router-dom';
 import { Button, Form, Input, Alert, Space } from 'antd';
 import { loginUser } from '../store/users';
 import React from 'react';
@@ -39,6 +39,7 @@ const Signup: React.FC = () => {
 
   const user = useSelector((state: RootState) => state.users.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onFinish = async (values: any) => {
     console.log('Received values of form: ', values);
@@ -57,6 +58,7 @@ const Signup: React.FC = () => {
         dispatch(loginUser(data));
         setLocalError(null);
         setSuccess(true);
+        navigate('/');
 
         console.log('result is: ', data); // You can access the response data here
       } else if ('error' in result) {

@@ -10,6 +10,7 @@ import { RootState } from '../store/store';
 import { useEffect } from 'react';
 import { Shoe, AllUsers, User } from '../interfaces/shoe';
 import { useGetUsersQuery } from '../services/apiCallUsers';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Favorites: React.FC = () => {
   const allUsers: AllUsers[] | null = useSelector<RootState, AllUsers[] | null>(
@@ -20,23 +21,29 @@ const Favorites: React.FC = () => {
     (state) => state.users.user
   );
 
+  const navigate = useNavigate();
+
   let userEmail: string = '';
+  let currentUserFavoriteIds: string[];
+  let userFavoritesArray: Shoe[] = [];
   if (typeof user === 'string') {
     userEmail = user;
   } else if (user && typeof user === 'object') {
     userEmail = user.email;
   }
+  if (!user || !userEmail) {
+    navigate('/login');
+  } else {
+    currentUserFavoriteIds =
+      allUsers?.filter((user) => user.email === userEmail)[0].favorites || [];
 
-  const currentUserFavoriteIds =
-    allUsers?.filter((user) => user.email === userEmail)[0].favorites || [];
-
-  let userFavoritesArray: Shoe[] = [];
-  for (let i = 0; i < currentUserFavoriteIds?.length; i++) {
-    allShoes.forEach((shoe) => {
-      if (shoe._id.toString() === currentUserFavoriteIds[i]) {
-        userFavoritesArray.push(shoe);
-      }
-    });
+    for (let i = 0; i < currentUserFavoriteIds?.length; i++) {
+      allShoes.forEach((shoe) => {
+        if (shoe._id.toString() === currentUserFavoriteIds[i]) {
+          userFavoritesArray.push(shoe);
+        }
+      });
+    }
   }
 
   const dispatch = useDispatch();

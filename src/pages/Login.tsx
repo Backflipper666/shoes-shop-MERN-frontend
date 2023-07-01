@@ -7,11 +7,13 @@ import { RootState } from '../store/store';
 import { loginUser as loginUserAction } from '../store/users';
 import { useLoginUserMutation } from '../services/apiCallLogin';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [loginUser, { isLoading, isError }] = useLoginUserMutation();
   const [localError, setLocalError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const user = useSelector((state: RootState) => state.users.user);
   const dispatch = useDispatch();
@@ -45,6 +47,7 @@ const Login: React.FC = () => {
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(loginUserAction(data));
         setSuccess(true);
+        navigate('/');
 
         // Handle the success response
         console.log('result is yeheeey!: ', data); // You can access the response data here

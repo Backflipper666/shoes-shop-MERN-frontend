@@ -11,40 +11,43 @@ const ShoesItem: React.FC = () => {
 
   return (
     <div className="shoes-item">
-      <h1 className="shoes-item__title">{shoe.title}</h1>
-      <p className="shoes-item__brand">{shoe.brand}</p>
-      <p className="shoes-item__description">{shoe.description}</p>
-      <p className="shoes-item__color">{shoe.color}</p>
-      <div className="shoes-item__images">
-        <img
-          className="shoes-item__image"
-          src={`data:${shoe.image.contentType};base64,${shoe.image.data}`}
-          width="300px"
-          alt={shoe.title}
-        />
-        <img
-          className="shoes-item__image"
-          src={`data:${shoe.image2?.contentType};base64,${shoe.image2?.data}`}
-          width="300px"
-          alt={shoe.title}
-        />
-        <img
-          className="shoes-item__image"
-          src={`data:${shoe.image3?.contentType};base64,${shoe.image3?.data}`}
-          width="300px"
-          alt={shoe.title}
-        />
-        <img
-          className="shoes-item__image"
-          src={`data:${shoe.image4?.contentType};base64,${shoe.image4?.data}`}
-          width="300px"
-          alt={shoe.title}
-        />
+      <div className="shoes-item__wrapper">
+        <h1 className="shoes-item__title">{shoe.title}</h1>
+        <div className="shoes-item__images">
+          <img
+            className="shoes-item__image"
+            src={`data:${shoe.image.contentType};base64,${shoe.image.data}`}
+            width="300px"
+            alt={shoe.title}
+          />
+          <img
+            className="shoes-item__image"
+            src={`data:${shoe.image2?.contentType};base64,${shoe.image2?.data}`}
+            width="300px"
+            alt={shoe.title}
+          />
+          <img
+            className="shoes-item__image"
+            src={`data:${shoe.image3?.contentType};base64,${shoe.image3?.data}`}
+            width="300px"
+            alt={shoe.title}
+          />
+          <img
+            className="shoes-item__image"
+            src={`data:${shoe.image4?.contentType};base64,${shoe.image4?.data}`}
+            width="300px"
+            alt={shoe.title}
+          />
+        </div>
+        <p className="shoes-item__brand">{shoe.brand}</p>
+        <p className="shoes-item__description">{shoe.description}</p>
+        <p className="shoes-item__color">{shoe.color}</p>
+
+        <p className="shoes-item__price">{shoe.price}</p>
+        <p className="shoes-item__material">{shoe.material}</p>
+        <p className="shoes-item__season">{shoe.season}</p>
+        <p className="shoes-item__size">{shoe.size}</p>
       </div>
-      <p className="shoes-item__price">{shoe.price}</p>
-      <p className="shoes-item__material">{shoe.material}</p>
-      <p className="shoes-item__season">{shoe.season}</p>
-      <p className="shoes-item__size">{shoe.size}</p>
     </div>
   );
 };

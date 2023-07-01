@@ -1,6 +1,5 @@
 //Header.tsx
 import './Header.scss';
-import searchIcon from '../../assets/images/search-icon.svg';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -38,14 +37,11 @@ const Header = () => {
         <h3 className="header__title" onClick={() => navigate('/')}>
           STEP STREET
         </h3>{' '}
-        <button className="header__link">МУЖЧИНАМ</button>
-        <button className="header__link">ЖЕНЩИНАМ</button>{' '}
       </div>
       <div className="header__right-wrapper">
-        <p className="header__link">{email}</p>
-        <img src={searchIcon} alt="search icon" className="header__search" />
+        <p className="header__link header__email">{email}</p>
         <button
-          className="header__link header__link-auth header__link-yellow"
+          className="header__link header__link-fav header__link-yellow"
           onClick={() => navigate('/favorites')}
         >
           ИЗБРАННОЕ
@@ -65,10 +61,6 @@ const Header = () => {
             </button>
           </Link>
         )}
-
-        <button className="header__link header__link-cart header__link-yellow">
-          КОРЗИНА
-        </button>
       </div>
     </nav>
   );

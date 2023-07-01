@@ -5,6 +5,12 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 
+  .shoes-item__wrapper {
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+  }
+
   .shoes-item__title {
     font-size: 24px;
     font-weight: bold;
@@ -29,6 +35,7 @@
 
   .shoes-item__images {
     margin-bottom: 10px;
+    align-self: center;
 
     .shoes-item__image {
       margin: 5px;
