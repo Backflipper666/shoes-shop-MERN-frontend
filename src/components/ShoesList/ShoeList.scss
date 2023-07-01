@@ -12,4 +12,7 @@
 }
 .shoelist {
   margin-bottom: 100px;
+  @media (min-width: 1px) and (max-width: 630px) {
+    margin-left: -320px;
+  }
 }

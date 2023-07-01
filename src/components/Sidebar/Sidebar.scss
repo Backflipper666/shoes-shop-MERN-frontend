@@ -20,6 +20,10 @@
   width: 320px;
   // position: absolute;
   float: left;
+  @media (max-width: 630px) {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 .sidebar__filter-container {
