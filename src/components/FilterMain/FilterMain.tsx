@@ -52,7 +52,6 @@ const FilterMain = () => {
     <div className="sidebar__filter sidebar__filter-container">
       <div className="sidebar__header-container">
         <h4 className="sidebar__header">Фильтр</h4>
-        <button className="sidebar__button">свернуть</button>
       </div>
       <div className="sidebar__form-wrapper">
         <input

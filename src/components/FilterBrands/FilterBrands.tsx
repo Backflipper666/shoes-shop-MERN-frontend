@@ -52,7 +52,6 @@ const FilterBrands = () => {
     <div className="sidebar__brand sidebar__filter-container">
       <div className="sidebar__header-container">
         <h4 className="sidebar__header sidebar__brand-header">Бренд</h4>
-        <button className="sidebar__button sidebar__button-dropdown"></button>
       </div>
       <div className="sidebar__form-wrapper">
         <input
