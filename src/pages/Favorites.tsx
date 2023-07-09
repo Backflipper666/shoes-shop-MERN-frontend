@@ -31,9 +31,14 @@ const Favorites: React.FC = () => {
   } else if (user && typeof user === 'object') {
     userEmail = user.email;
   }
-  if (!user || !userEmail) {
-    navigate('/login');
-  } else {
+
+  useEffect(() => {
+    if (!user || !userEmail) {
+      navigate('/login');
+    }
+  }, [user, userEmail, navigate]);
+
+  if (user && userEmail) {
     currentUserFavoriteIds =
       allUsers?.filter((user) => user.email === userEmail)[0].favorites || [];
 

@@ -1,15 +1,18 @@
 //ShoesItem.tsx
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import { useParams } from 'react-router-dom';
 import { CartProvider, useCart } from 'react-use-cart';
 import './ShoesItem.scss';
 import { Button, Space } from 'antd';
-
+import { Link } from 'react-router-dom';
+import { RootState } from '../../store/store';
+import { Shoe, AllUsers, User } from '../../interfaces/shoe';
 const ShoesItem: React.FC = () => {
   const { id } = useParams();
   const allShoes = useSelector((state: RootState) => state.shoes.list);
   const shoe = allShoes.filter((shoe) => shoe._id.toString() === id)[0];
+
+  const shoeId = shoe._id.toString();
 
   const {
     addItem,
@@ -19,6 +22,7 @@ const ShoesItem: React.FC = () => {
     updateItemQuantity,
     removeItem,
     inCart,
+    getItem,
   } = useCart();
 
   return (
@@ -52,19 +56,31 @@ const ShoesItem: React.FC = () => {
           />
         </div>
         <Space wrap>
-          <Button
-            type="primary"
-            onClick={() => addItem({ ...shoe, id: shoe._id.toString() })}
-          >
-            Добавить в корзину
-          </Button>{' '}
-          <Button
-            type="primary"
-            danger
-            onClick={() => removeItem(shoe._id.toString())}
-          >
-            Удалить из корзины
-          </Button>
+          {inCart(shoeId) ? (
+            <Button
+              type="primary"
+              onClick={() => addItem({ ...shoe, id: shoeId })}
+              style={{ backgroundColor: 'green' }}
+            >
+              Товар в корзине!
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              onClick={() => addItem({ ...shoe, id: shoeId })}
+            >
+              Добавить в корзину
+            </Button>
+          )}
+          {inCart(shoeId) ? (
+            <Button
+              type="primary"
+              danger
+              onClick={() => removeItem(shoe._id.toString())}
+            >
+              Удалить из корзины
+            </Button>
+          ) : null}
         </Space>
         <p className="shoes-item__brand">{shoe.brand}</p>
         <p className="shoes-item__description">{shoe.description}</p>

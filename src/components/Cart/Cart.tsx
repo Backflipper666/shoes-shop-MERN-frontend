@@ -3,8 +3,10 @@ import React from 'react';
 import { CartProvider, useCart } from 'react-use-cart';
 import './Cart.scss';
 import { Button, Space } from 'antd';
-
-interface Item {}
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Cart() {
   const {
@@ -16,6 +18,18 @@ function Cart() {
     emptyCart,
     cartTotal,
   } = useCart();
+
+  const navigate = useNavigate();
+
+  const user = useSelector<RootState, string | null>(
+    (state) => state.users.user
+  );
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
   if (isEmpty) return <p>Your cart is empty</p>;
 
