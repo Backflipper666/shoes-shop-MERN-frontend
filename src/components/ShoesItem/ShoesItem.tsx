@@ -2,12 +2,24 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useParams } from 'react-router-dom';
+import { CartProvider, useCart } from 'react-use-cart';
 import './ShoesItem.scss';
+import { Button, Space } from 'antd';
 
 const ShoesItem: React.FC = () => {
   const { id } = useParams();
   const allShoes = useSelector((state: RootState) => state.shoes.list);
   const shoe = allShoes.filter((shoe) => shoe._id.toString() === id)[0];
+
+  const {
+    addItem,
+    isEmpty,
+    totalUniqueItems,
+    items,
+    updateItemQuantity,
+    removeItem,
+    inCart,
+  } = useCart();
 
   return (
     <div className="shoes-item">
@@ -39,6 +51,21 @@ const ShoesItem: React.FC = () => {
             alt={shoe.title}
           />
         </div>
+        <Space wrap>
+          <Button
+            type="primary"
+            onClick={() => addItem({ ...shoe, id: shoe._id.toString() })}
+          >
+            Добавить в корзину
+          </Button>{' '}
+          <Button
+            type="primary"
+            danger
+            onClick={() => removeItem(shoe._id.toString())}
+          >
+            Удалить из корзины
+          </Button>
+        </Space>
         <p className="shoes-item__brand">{shoe.brand}</p>
         <p className="shoes-item__description">{shoe.description}</p>
         <p className="shoes-item__color">{shoe.color}</p>

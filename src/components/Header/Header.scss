@@ -115,6 +115,7 @@
 
 .header__link-cart {
   color: var(--aux-color);
+  position: relative;
 }
 
 .header__link-cart::after {
@@ -159,4 +160,9 @@
   &::before {
     background-image: none;
   }
+}
+
+.header__cart-items {
+  position: absolute;
+  right: -30px;
 }

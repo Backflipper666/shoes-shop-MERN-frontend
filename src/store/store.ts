@@ -2,6 +2,7 @@
 import { configureStore, Middleware } from '@reduxjs/toolkit';
 import shoesReducer from './slices';
 import usersReducer from './users';
+import cartReducer from './cart';
 import api from '../services/apiCallShoes';
 import signupApi from '../services/apiCallSignup';
 import loginApi from '../services/apiCallLogin';
@@ -14,6 +15,7 @@ export const store = configureStore({
     shoes: shoesReducer,
     shoesApi: api.reducer,
     users: usersReducer,
+    cart: cartReducer,
     signupApi: signupApi.reducer,
     loginApi: loginApi.reducer,
     addToFavoritesApi: addToFavoritesApi.reducer,

@@ -8,8 +8,10 @@ import { loginUser as loginUserAction } from '../../store/users';
 import { useEffect } from 'react';
 import { User } from '../../interfaces/shoe';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from 'react-use-cart';
 
 const Header = () => {
+  const { isEmpty, totalUniqueItems } = useCart();
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -61,6 +63,13 @@ const Header = () => {
             </button>
           </Link>
         )}
+        <button
+          className="header__link header__link-cart header__link-yellow"
+          onClick={() => navigate('/cart')}
+        >
+          КОРЗИНА
+          <span className="header__cart-items">{totalUniqueItems}</span>
+        </button>
       </div>
     </nav>
   );

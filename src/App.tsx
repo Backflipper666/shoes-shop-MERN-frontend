@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import Favorites from './pages/Favorites';
 import ShoesItem from './components/ShoesItem/ShoesItem';
 import Footer from './components/Footer/Footer';
+import Cart from './components/Cart/Cart';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/:id" element={<ShoesItem />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </div>
         <div className="app__footer-wrapper">
