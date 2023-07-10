@@ -62,7 +62,22 @@
     font-weight: normal;
   }
 
-  .shoes-item__inCart {
-    background-color: green;
+  .shoes-item__in-cart {
+    display: flex;
+    flex-direction: column;
+
+    .shoes-item__quantity {
+      font-size: 10px;
+    }
+  }
+  .shoes-item__quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    .shoes-item__quantity-middle {
+      cursor: default;
+    }
   }
 }

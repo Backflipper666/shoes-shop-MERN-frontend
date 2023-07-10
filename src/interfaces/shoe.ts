@@ -94,3 +94,10 @@ export interface AllUsers {
   email: string;
   favorites: string[];
 }
+
+export interface ShoeInCart extends Shoe {
+  id: string;
+  quantity: number;
+  itemTotal: number;
+  __v: number;
+}

@@ -7,6 +7,7 @@ import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ShoeInCart } from '../../interfaces/shoe';
 
 function Cart() {
   const {
