@@ -13,12 +13,12 @@ import RemoveIcon from '@mui/icons-material/Remove';
 const ShoesItem: React.FC = () => {
   const { id } = useParams();
   const allShoes = useSelector((state: RootState) => state.shoes.list);
-  const shoe = allShoes.filter((shoe) => shoe._id.toString() === id)[0];
+  const shoe = allShoes.filter((shoe) => shoe.id.toString() === id)[0];
   const user = useSelector<RootState, string | User | null>(
     (state) => state.users.user
   );
   const navigate = useNavigate();
-  const shoeId = shoe._id.toString();
+  const shoeId = shoe.id.toString();
 
   const {
     addItem,
@@ -49,7 +49,7 @@ const ShoesItem: React.FC = () => {
       <div className="shoes-item__wrapper">
         <h1 className="shoes-item__title">{shoe.title}</h1>
         <div className="shoes-item__images">
-          <img
+          {/* <img
             className="shoes-item__image"
             src={`data:${shoe.image.contentType};base64,${shoe.image.data}`}
             width="300px"
@@ -72,7 +72,7 @@ const ShoesItem: React.FC = () => {
             src={`data:${shoe.image4?.contentType};base64,${shoe.image4?.data}`}
             width="300px"
             alt={shoe.title}
-          />
+          /> */}
         </div>
         <Space wrap>
           {inCart(shoeId) ? (
@@ -116,7 +116,7 @@ const ShoesItem: React.FC = () => {
             <Button
               type="primary"
               danger
-              onClick={() => removeItem(shoe._id.toString())}
+              onClick={() => removeItem(shoe.id.toString())}
             >
               Удалить из корзины
             </Button>

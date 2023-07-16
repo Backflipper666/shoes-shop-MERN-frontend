@@ -12,8 +12,16 @@ import { Shoe, AllUsers } from '../../interfaces/shoe';
 import { useGetUsersQuery } from '../../services/apiCallUsers';
 import Spinner from '../Spinner/Spinner';
 
+interface Data {
+  shoes: any[];
+}
+
 const ShoesList = () => {
-  const { data: shoes, isLoading, isError } = useGetShoesQuery();
+  const { data, isLoading, isError } = useGetShoesQuery();
+
+  const shoes = data?.shoes;
+
+  console.log('shhoeees', shoes);
 
   const {
     data: allUsersObj,
@@ -56,7 +64,7 @@ const ShoesList = () => {
       <Sidebar />
       <div className="shoelist__container">
         {shoesToBeRendered.map((shoe) => (
-          <ShoesDetail key={shoe._id} shoe={shoe} />
+          <ShoesDetail key={shoe.id} shoe={shoe} />
         ))}
       </div>
     </div>

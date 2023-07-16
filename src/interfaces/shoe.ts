@@ -1,48 +1,24 @@
 export interface Shoe {
-  _id: number;
+  id: number; // Assuming 'id' is an auto-generated numeric field
   title: string;
   description: string;
-  color: string;
   brand: 'FILA' | 'Nike' | 'Adidas' | 'Puma' | 'Other';
   price: number;
+  old_price: number;
+  color: string;
   size: number;
   material?: string;
-  stock: number;
-  image: {
-    contentType: string;
-    data: {
-      type: string;
-      data: number[];
-    };
-  };
-  image2?: {
-    contentType: string;
-    data: {
-      type: string;
-      data: number[];
-    };
-  };
-  image3?: {
-    contentType: string;
-    data: {
-      type: string;
-      data: number[];
-    };
-  };
-  image4?: {
-    contentType: string;
-    data: {
-      type: string;
-      data: number[];
-    };
-  };
-  rating?: number;
-  reviews?: Review[];
-  createdAt?: Date;
+  stock: Record<string, number>;
+  image: string;
+  image2: string;
+  image3: string;
+  image4: string;
+  rating?: number | null;
+  createdAt: Date;
   gender: 'men' | 'women' | 'kids';
-  onSale?: boolean;
-  discountPercent?: number;
-  newCollection?: boolean;
+  onSale: boolean;
+  discountPercent: number;
+  newCollection: boolean;
   season?: 'summer' | 'winter' | 'demi';
 }
 
@@ -96,7 +72,7 @@ export interface AllUsers {
 }
 
 export interface ShoeInCart extends Shoe {
-  id: string;
+  id: number;
   quantity: number;
   itemTotal: number;
   __v: number;

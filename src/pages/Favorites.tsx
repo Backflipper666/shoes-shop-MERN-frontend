@@ -44,7 +44,7 @@ const Favorites: React.FC = () => {
 
     for (let i = 0; i < currentUserFavoriteIds?.length; i++) {
       allShoes.forEach((shoe) => {
-        if (shoe._id.toString() === currentUserFavoriteIds[i]) {
+        if (shoe.id.toString() === currentUserFavoriteIds[i]) {
           userFavoritesArray.push(shoe);
         }
       });
@@ -58,9 +58,9 @@ const Favorites: React.FC = () => {
     <div className="shoelist">
       <Sidebar />
       <div className="shoelist__container">
-        {userFavoritesArray.map((shoe) => (
-          <ShoesDetail key={shoe._id} shoe={shoe} />
-        ))}
+        {/*       {userFavoritesArray.map((shoe) => (
+          <ShoesDetail key={shoe.id} shoe={shoe} />
+        ))} */}
       </div>
     </div>
   );

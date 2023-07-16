@@ -3,7 +3,7 @@ import { Shoe, User, AllUsers } from '../../interfaces/shoe';
 import { RootState } from '../../store/store';
 import './ShoesDetail.scss';
 import { useEffect, useState } from 'react';
-import { truncateString } from '../../utils/utils';
+import { truncateString, replaceMediaWithStaticFiles } from '../../utils/utils';
 import { Image } from '../../interfaces/shoe';
 import { useSelector } from 'react-redux';
 import { useAddToFavoritesMutation } from '../../services/apiCallAddToFavorites';
@@ -11,9 +11,14 @@ import { useRemoveFromFavoritesMutation } from '../../services/apiCallRemoveFrom
 import { useNavigate, Link } from 'react-router-dom';
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
+  const imageUrl: string = replaceMediaWithStaticFiles(shoe.image);
+  const image2Url: string = replaceMediaWithStaticFiles(shoe.image2);
+  const image3Url: string = replaceMediaWithStaticFiles(shoe.image3);
+  const image4Url: string = replaceMediaWithStaticFiles(shoe.image4);
+
   const [addToFavorites, { isLoading, isError }] = useAddToFavoritesMutation();
   const [removeFromFavorites] = useRemoveFromFavoritesMutation();
-  const [currentImage, setCurrentImage] = useState<Image>(shoe.image);
+  const [currentImage, setCurrentImage] = useState(imageUrl);
   const navigate = useNavigate();
   const user = useSelector<RootState, string | User | null>(
     (state) => state.users.user
@@ -35,17 +40,17 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
 
   const favorites: string[] | undefined = authenticatedUser?.favorites || [];
 
-  const isItReallyFavorite = favorites.includes(shoe._id.toString());
+  const isItReallyFavorite = favorites.includes(shoe.id.toString());
   const [isFavorite, setIsFavorite] = useState<boolean>(isItReallyFavorite);
 
-  const handleMouseEnter = (image?: Image) => {
+  const handleMouseEnter = (image: string) => {
     if (image) {
       setCurrentImage(image);
     }
   };
 
   const handleMouseLeave = () => {
-    setCurrentImage(shoe.image);
+    setCurrentImage(imageUrl);
   };
 
   let userToken: string | null = null;
@@ -63,14 +68,14 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
       if (!isFavorite) {
         const result = await addToFavorites({
           email: userEmail,
-          shoeId: shoe._id,
+          shoeId: shoe.id,
           token: userToken,
         });
         setIsFavorite(true);
       } else {
         const result = await removeFromFavorites({
           email: userEmail,
-          shoeId: shoe._id,
+          shoeId: shoe.id,
           token: userToken,
         });
         setIsFavorite(false);
@@ -85,22 +90,22 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
       <div className="card__wrapper">
         <div
           className="card__span-wrapper"
-          onClick={() => navigate(`/${shoe._id}`)}
+          onClick={() => navigate(`/${shoe.id}`)}
         >
           <span className="card__indicator card__indicator-1"></span>
           <span
             className="card__indicator card__indicator-2"
-            onMouseEnter={() => handleMouseEnter(shoe.image2)}
+            onMouseEnter={() => handleMouseEnter(image2Url)}
             onMouseLeave={handleMouseLeave}
           ></span>
           <span
             className="card__indicator card__indicator-3"
-            onMouseEnter={() => handleMouseEnter(shoe.image3)}
+            onMouseEnter={() => handleMouseEnter(image3Url)}
             onMouseLeave={handleMouseLeave}
           ></span>
           <span
             className="card__indicator card__indicator-4"
-            onMouseEnter={() => handleMouseEnter(shoe.image4)}
+            onMouseEnter={() => handleMouseEnter(image4Url)}
             onMouseLeave={handleMouseLeave}
           ></span>
         </div>
@@ -110,14 +115,12 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
             -{shoe.discountPercent}%
           </p>
         )}
-
         <span
           className={isFavorite ? 'card__heart-red' : 'card__heart'}
           onClick={handleAddToFavorites}
         ></span>
-
         <img
-          src={`data:${currentImage.contentType};base64,${currentImage.data}`}
+          src={`http://127.0.0.1:8000/${currentImage}`}
           width="300px"
           className="card__image-first"
           alt={shoe.title}
@@ -131,3 +134,8 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
 };
 
 export default ShoesDetail;
+
+/* const ShoesDetail = () => {
+  return <div></div>;
+};
+export default ShoesDetail; */

@@ -184,3 +184,7 @@ export const countShoesForWomen = (arr: Shoe[]) => {
 export const countBrands = (arr: Shoe[], brand: String) => {
   return arr.filter((shoe) => shoe.brand === brand).length;
 };
+
+export function replaceMediaWithStaticFiles(input: string): string {
+  return input.replace(/\/media\//g, '/staticfiles/');
+}
