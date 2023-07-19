@@ -18,6 +18,7 @@ const initialState: ShoesState = {
     isForWomenChecked: false,
   },
   priceRange: { min: 10000, max: 100000 },
+  server: 'http://127.0.0.1:8000/',
 };
 
 const shoesSlice = createSlice({

@@ -26,6 +26,7 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const allUsers: AllUsers[] | null = useSelector<RootState, AllUsers[] | null>(
     (state) => state.users.allUsers
   );
+  const server = useSelector((state: RootState) => state.shoes.server);
 
   let userEmail: string = '';
   if (typeof user === 'string') {
@@ -120,7 +121,7 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
           onClick={handleAddToFavorites}
         ></span>
         <img
-          src={`http://127.0.0.1:8000/${currentImage}`}
+          src={`${server}${currentImage}`}
           width="300px"
           className="card__image-first"
           alt={shoe.title}

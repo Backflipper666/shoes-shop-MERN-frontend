@@ -45,6 +45,7 @@ export interface ShoesState {
   shoesToBeRendered: Shoe[];
   checkedFields: CheckedFields;
   priceRange: { min: number; max: number };
+  server: string;
 }
 
 export interface User {

@@ -9,16 +9,24 @@ import { RootState } from '../../store/store';
 import { Shoe, AllUsers, User } from '../../interfaces/shoe';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { replaceMediaWithStaticFiles } from '../../utils/utils';
 
 const ShoesItem: React.FC = () => {
   const { id } = useParams();
   const allShoes = useSelector((state: RootState) => state.shoes.list);
+  const server = useSelector((state: RootState) => state.shoes.server);
+
   const shoe = allShoes.filter((shoe) => shoe.id.toString() === id)[0];
   const user = useSelector<RootState, string | User | null>(
     (state) => state.users.user
   );
   const navigate = useNavigate();
   const shoeId = shoe.id.toString();
+
+  const imageUrl: string = replaceMediaWithStaticFiles(shoe.image);
+  const image2Url: string = replaceMediaWithStaticFiles(shoe.image2);
+  const image3Url: string = replaceMediaWithStaticFiles(shoe.image3);
+  const image4Url: string = replaceMediaWithStaticFiles(shoe.image4);
 
   const {
     addItem,
@@ -34,8 +42,6 @@ const ShoesItem: React.FC = () => {
   const shoeInCart = getItem(shoeId) ? getItem(shoeId) : null;
   console.log('shuhe', shoeInCart);
 
-  console.log('_____v', shoeInCart?.__v);
-
   const handleAddItem = () => {
     if (!user) {
       navigate('/login');
@@ -49,30 +55,30 @@ const ShoesItem: React.FC = () => {
       <div className="shoes-item__wrapper">
         <h1 className="shoes-item__title">{shoe.title}</h1>
         <div className="shoes-item__images">
-          {/* <img
+          <img
             className="shoes-item__image"
-            src={`data:${shoe.image.contentType};base64,${shoe.image.data}`}
+            src={`${server}${imageUrl}`}
             width="300px"
             alt={shoe.title}
           />
           <img
             className="shoes-item__image"
-            src={`data:${shoe.image2?.contentType};base64,${shoe.image2?.data}`}
+            src={`${server}${image2Url}`}
             width="300px"
             alt={shoe.title}
           />
           <img
             className="shoes-item__image"
-            src={`data:${shoe.image3?.contentType};base64,${shoe.image3?.data}`}
+            src={`${server}${image3Url}`}
             width="300px"
             alt={shoe.title}
           />
           <img
             className="shoes-item__image"
-            src={`data:${shoe.image4?.contentType};base64,${shoe.image4?.data}`}
+            src={`${server}${image4Url}`}
             width="300px"
             alt={shoe.title}
-          /> */}
+          />
         </div>
         <Space wrap>
           {inCart(shoeId) ? (
