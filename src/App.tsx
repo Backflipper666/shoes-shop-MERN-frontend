@@ -11,7 +11,9 @@ import Favorites from './pages/Favorites';
 import ShoesItem from './components/ShoesItem/ShoesItem';
 import Footer from './components/Footer/Footer';
 import Cart from './components/Cart/Cart';
-
+import Admin from './pages/Admin';
+import AdminShoes from './pages/AdminShoesList';
+import AdminShoesItem from './components/AdminShoesItem/AdminShoesItem';
 function App() {
   return (
     <div className="App">
@@ -26,6 +28,9 @@ function App() {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/:id" element={<ShoesItem />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/shoes" element={<AdminShoes />} />
+            <Route path="/admin/shoes/:id" element={<AdminShoesItem />} />
           </Routes>
         </div>
         <div className="app__footer-wrapper">
