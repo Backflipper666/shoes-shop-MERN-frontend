@@ -2,7 +2,7 @@ export interface Shoe {
   _id: number;
   title: string;
   description: string;
-  color: string;
+  color?: string;
   brand: 'FILA' | 'Nike' | 'Adidas' | 'Puma' | 'Other';
   price: number;
   size: number;

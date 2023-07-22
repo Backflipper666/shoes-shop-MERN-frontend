@@ -1,4 +1,4 @@
-//ShoeDetail.tsx
+//AdminShoeDetail.tsx
 import { Shoe, User, AllUsers } from '../../interfaces/shoe';
 import { RootState } from '../../store/store';
 import './AdminShoesDetail.scss';
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { useAddToFavoritesMutation } from '../../services/apiCallAddToFavorites';
 import { useRemoveFromFavoritesMutation } from '../../services/apiCallRemoveFromFavorites';
 import { useNavigate, Link } from 'react-router-dom';
+import { Button, Space } from 'antd';
 
 const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
   const [addToFavorites, { isLoading, isError }] = useAddToFavoritesMutation();
@@ -82,6 +83,13 @@ const ShoesDetail = ({ shoe }: { shoe: Shoe }) => {
 
   return (
     <div className="card">
+      <Space wrap>
+        <Button>Посмотреть</Button>
+        <Button type="primary">Изменить</Button>
+        <Button type="primary" danger>
+          Удалить
+        </Button>{' '}
+      </Space>
       <div className="card__wrapper">
         <div
           className="card__span-wrapper"

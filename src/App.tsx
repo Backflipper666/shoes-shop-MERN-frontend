@@ -14,6 +14,7 @@ import Cart from './components/Cart/Cart';
 import Admin from './pages/Admin';
 import AdminShoes from './pages/AdminShoesList';
 import AdminShoesItem from './components/AdminShoesItem/AdminShoesItem';
+import CreateShoes from './components/CreateNewShoes/CreateNewShoes';
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/shoes" element={<AdminShoes />} />
             <Route path="/admin/shoes/:id" element={<AdminShoesItem />} />
+            <Route path="/admin/shoes/create" element={<CreateShoes />} />
           </Routes>
         </div>
         <div className="app__footer-wrapper">
