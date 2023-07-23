@@ -5,12 +5,15 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import SelectBrand from './SelectBrand';
 import SelectMaterial from './SelectMaterial';
+import SelectStock from './SelectStock';
+import SelectColor from './SelectColor';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 const CreateShoes = () => {
   const [brand, setBrand] = useState<string>(''); // Define the type for 'brand' state variable
   const [material, setMaterial] = useState<string>('');
+  const [color, setColor] = useState<string>('');
   const [isPriceNegative, setIsPriceNegative] = useState(false);
 
   const handleSubmit = () => {
@@ -68,7 +71,7 @@ const CreateShoes = () => {
       />
 
       <SelectMaterial material={material} setMaterial={setMaterial} />
-
+      <SelectColor color={color} setColor={setColor} />
       <Stack spacing={2} direction="row">
         <Button variant="contained" onClick={handleSubmit}>
           Создать

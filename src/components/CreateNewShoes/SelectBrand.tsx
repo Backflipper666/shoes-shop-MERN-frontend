@@ -17,7 +17,7 @@ export default function SelectBrand({ brand, setBrand }: SelectBrandProps) {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 100 }} required={true}>
-        <InputLabel id="demo-simple-select-autowidth-label">Брэнд</InputLabel>
+        <InputLabel id="demo-simple-select-autowidth-label">Бренд</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
