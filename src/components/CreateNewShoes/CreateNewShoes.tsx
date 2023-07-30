@@ -9,6 +9,10 @@ import SelectStock from './SelectStock';
 import SelectColor from './SelectColor';
 import SelectGender from './SelectGender';
 import SelectSeason from './SelectSeason';
+import SelectImage from './SelectImage';
+import SelectImage2 from './SelectImage2';
+import SelectImage3 from './SelectImage3';
+import SelectImage4 from './SelectImage4';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import FormGroup from '@mui/material/FormGroup';
@@ -23,6 +27,39 @@ const CreateShoes = () => {
   const [season, setSeason] = useState<string>('');
   const [isPriceNegative, setIsPriceNegative] = useState(false);
   const [isStockNegative, setIsStockNegative] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [selectedImage2, setSelectedImage2] = useState<File | null>(null);
+  const [selectedImage3, setSelectedImage3] = useState<File | null>(null);
+  const [selectedImage4, setSelectedImage4] = useState<File | null>(null);
+  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+
+  const handleImageSelect = (file: File | null) => {
+    setSelectedImage(file);
+    if (file) {
+      setSelectedImages((prevImages) => [...prevImages, file]);
+    }
+  };
+
+  const handleImageSelect2 = (file: File | null) => {
+    setSelectedImage2(file);
+    if (file) {
+      setSelectedImages((prevImages) => [...prevImages, file]);
+    }
+  };
+
+  const handleImageSelect3 = (file: File | null) => {
+    setSelectedImage3(file);
+    if (file) {
+      setSelectedImages((prevImages) => [...prevImages, file]);
+    }
+  };
+
+  const handleImageSelect4 = (file: File | null) => {
+    setSelectedImage4(file);
+    if (file) {
+      setSelectedImages((prevImages) => [...prevImages, file]);
+    }
+  };
 
   const handleSubmit = () => {
     console.log(brand);
@@ -129,6 +166,25 @@ const CreateShoes = () => {
           label="Новая коллекция"
         />
       </FormGroup>
+
+      <div className="create-shoes__images">
+        <div className="create-shoes__image-container">
+          <input type="file" accept="image/*" id="image1" />
+          <label htmlFor="image1">Выбрать изображение</label>
+        </div>
+        <div className="create-shoes__image-container">
+          <input type="file" accept="image/*" id="image2" />
+          <label htmlFor="image2">Выбрать изображение</label>
+        </div>
+        <div className="create-shoes__image-container">
+          <input type="file" accept="image/*" id="image3" />
+          <label htmlFor="image3">Выбрать изображение</label>
+        </div>
+        <div className="create-shoes__image-container">
+          <input type="file" accept="image/*" id="image4" />
+          <label htmlFor="image4">Выбрать изображение</label>
+        </div>
+      </div>
 
       <Stack spacing={2} direction="row">
         <Button variant="contained" onClick={handleSubmit}>
